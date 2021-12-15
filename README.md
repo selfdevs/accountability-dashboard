@@ -3,7 +3,7 @@
 
 
 ##### TL;DR
-<img height='175' src="docs/screenshots/selfdev_logo.png?raw=true" align="right" hspace="1" vspace="1">
+<img width='200' src="docs/screenshots/selfdev_logo.png?raw=true" align="right" hspace="1" vspace="1">
 
 The self.dev community focuses on self-development, productivity and cross-disciplinary collaborations. To increase the communities productivity and keep ourselves more accountable we are developing a dashboard which acts as a journal for every individuals monthly goal.
 
