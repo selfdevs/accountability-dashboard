@@ -44,8 +44,7 @@ We want the code to be clean, and understood by anyone. So for this we will ask 
 request to be reviewed by at least one person of the team.
 
 ### Labels
-- `Review needed` is to apply when your feature or bug fix is ready, and no additional
-code is needed.
+- `Review needed`, use it when your feature or bug fix is ready.
 - `WIP`, work in progress. Use it if you're not finished yet or applying major modifications
 to your code.
 - `In discussion` this is useful when there is active debate or questions opened
