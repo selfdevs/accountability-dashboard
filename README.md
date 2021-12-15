@@ -1,7 +1,5 @@
 # self.dev Accountability Dashboard
 
-
-
 ##### TL;DR
 <img width='200' src="docs/screenshots/selfdev_logo.png?raw=true" align="right" hspace="1" vspace="1">
 
@@ -13,7 +11,13 @@ mainly consist of 3 components:
 * Chart
 * Scratchboard
 
-![Screenshot](docs/screenshots/BasicDashboardExample_excel.png?raw=true)
+![Screenshot](docs/screenshots/dashboard_example_excel.png?raw=true)
+ Example Dashboard in Excel
+
+
+![Screenshot](docs/screenshots/final_dashboard_design.png?raw=true)
+Final Dashboard Design (made by K_Talpa)
+
 
 ---
 ## Background Story
