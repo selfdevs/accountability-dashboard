@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
 
-const App = () => <h1>Hello world</h1>;
+const App = () => <p>Hello world</p>;
 
 export default App;
