@@ -36,7 +36,7 @@ to be reviewed, feel free to open a pull request.
 
 ## Pull requests
 
-> We highly recommend you to join the Discord server as mentioned in the first
+> We highly recommend you to join the [Discord server](https://discord.gg/AgNcUeS3Zx) as mentioned in the first
 > paragraph before you open pull request on the project, to get in touch with the team,
 > and have a bit of context before you start.
 
