@@ -53,7 +53,7 @@ on the pull request.
 
 ## Commit and pull request title convention
 
-Because we find it cool, we recommend you to use the famous [Gitmojis](https://gitmoji.dev/)
+Because we find it cool, as a good practice and recommendation, you can use the famous [Gitmojis](https://gitmoji.dev/)
 before describing the subject of your work. You have [on the website](https://gitmoji.dev/)
 the description of what kind of modifications you brought to the repo for each emoji.
 Here are some examples:
