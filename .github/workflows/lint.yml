@@ -5,11 +5,11 @@ on:
     branches: [ chore/ci ]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Lint step
+      - name: Setup Node 16
         uses: actions/setup-node@v2
         with:
           node-version: '16'
