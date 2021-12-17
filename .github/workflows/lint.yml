@@ -2,7 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ chore/ci ]
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   lint:
