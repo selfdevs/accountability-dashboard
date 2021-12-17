@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "security": "yarn-audit-ci -m"
+    "security": "yarn-audit-ci"
   },
   "eslintConfig": {
     "extends": [
