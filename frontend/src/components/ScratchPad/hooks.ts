@@ -3,7 +3,7 @@ import {
   useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { getFromStorage, saveToStorage } from '../../modules/storage/io';
-import { SCRATCHPAD_STORAGE_KEY } from './constants';
+import { SAVING_DELAY, SCRATCHPAD_STORAGE_KEY } from './constants';
 import data from '../../mocks/scratchpad-data.json';
 import { getStateText } from './utils';
 
@@ -25,7 +25,7 @@ export const useScratchPad = (): ScratchPadHook => {
     timer.current = setTimeout(() => {
       saveToStorage(SCRATCHPAD_STORAGE_KEY, e.target.value);
       setLoading(false);
-    }, 500);
+    }, SAVING_DELAY);
 
     return () => {
       if (timer.current) clearTimeout(timer.current);
