@@ -7,13 +7,18 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node 16
+      - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-          cache: 'npm'
-          cache-dependency-path: frontend/yarn.lock
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+          cache-dependency-path: ./frontend/yarn.lock
       - run: yarn install
-        working-directory: frontend
+        working-directory: ./frontend
