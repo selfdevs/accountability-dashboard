@@ -61,7 +61,7 @@ The plan is to use the community server and host each individuals dashboard on a
 The following documents provided further information
 
 Contributions are much appreciated, be they bug reports, ideas or patches. See the file for more information.
- * [Contributing](docs/CONTRIBUTING.md)
+ * [Contributing](CONTRIBUTING.md)
 
 ---
 
