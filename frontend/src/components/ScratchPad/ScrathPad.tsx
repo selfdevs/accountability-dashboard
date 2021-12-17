@@ -1,18 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import Card from '../Card';
 import './stylesheet.css';
-import data from '../../mocks/scratchpad-data.json';
+import { useScratchPad } from './hooks';
 
 const ScratchPad = () => {
-  const [value, setValue] = useState<string>(data.text);
-
-  const onChangeHandler = useCallback((e) => {
-    setValue(e.target.value);
-  });
+  const { loadingText, value, onChangeHandler } = useScratchPad();
 
   return (
     <Card>
       <h2 className="scratch-title">Scratchpad</h2>
+      <p className="scratch-loading">{loadingText}</p>
       <textarea className="scratch-area" value={value} onChange={onChangeHandler} />
     </Card>
   );
