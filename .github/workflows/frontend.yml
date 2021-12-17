@@ -50,3 +50,25 @@ jobs:
       - run: yarn test
         name: Run tests
         working-directory: ./frontend
+
+  security:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+          cache-dependency-path: ./frontend/yarn.lock
+      - run: yarn install
+        name: Install dependencies
+        working-directory: ./frontend
+      - run: yarn security
+        name: Run security audit
+        working-directory: ./frontend
