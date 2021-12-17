@@ -25,9 +25,9 @@ jobs:
       - run: yarn install
         name: Install dependencies
         working-directory: ./frontend
-     - run: yarn lint
-       name: Run lint
-       working-directory: ./frontend
+      - run: yarn lint
+        name: Run lint
+        working-directory: ./frontend
 
 #  test:
 #    runs-on: ubuntu-latest
