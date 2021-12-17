@@ -10,7 +10,7 @@ const ScratchPad = () => {
     <Card>
       <h2 className="scratch-title">Scratchpad</h2>
       <p className="scratch-loading">{loadingText}</p>
-      <textarea className="scratch-area" value={value} onChange={onChangeHandler} />
+      <textarea className="scratch-area" value={value} data-testid="scratch-pad" onChange={onChangeHandler} />
     </Card>
   );
 };
