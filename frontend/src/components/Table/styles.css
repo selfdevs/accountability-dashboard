@@ -1,0 +1,8 @@
+.data-table {
+    margin: 5rem;
+}
+
+.data-table th, td {
+    padding: 0.1rem 1rem;
+    text-align: left;
+}
