@@ -1,8 +1,34 @@
 .data-table {
     margin: 5rem;
+    height: 80vh;
+    display: block;
+    overflow: auto;
+    position: relative;
+}
+
+.data-table thead {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, white 90%, rgba(255,255,255,0));
+    padding-bottom: 1rem;
 }
 
 .data-table th, td {
     padding: 0.1rem 1rem;
+    text-align: left;
+}
+
+.data-table td {
+    text-align: center;
+}
+
+.data-table tbody td:nth-child(2), td:nth-child(3) {
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+.data-table tbody td:nth-child(4) {
     text-align: left;
 }

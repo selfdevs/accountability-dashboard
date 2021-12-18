@@ -3,7 +3,7 @@ import React from 'react';
 const TableHeader = () => (
   <thead>
     <tr>
-      <th>Date</th>
+      <th>Day</th>
       <th>Goal</th>
       <th>Done</th>
       <th>Comment</th>
