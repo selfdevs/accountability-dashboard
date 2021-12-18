@@ -36,7 +36,7 @@ Adding a healthy pinch of competitive gamification to keep ourselves accountable
 Frontend: ReactJS
 Backend: MongoDB
 
-Webpage: theselfdev.com
+Webpage: [theselfdev.com](https://theselfdev.com)
 
 The plan is to use the community server and host each individuals dashboard on an individual page:
 
