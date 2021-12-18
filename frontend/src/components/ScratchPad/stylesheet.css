@@ -15,5 +15,10 @@
     border-radius: 5px;
 }
 
+.scratch-loading {
+    margin: 0;
+    font-size: 12px;
+}
+
 .scratch-area:focus {
 }
