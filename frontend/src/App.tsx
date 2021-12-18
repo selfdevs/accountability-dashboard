@@ -18,9 +18,9 @@ const App = () => (
               <ScratchPad />
             </div>
           </div>
-)}
+        )}
       />
-      <Route path="/" element={<NavLink to="/longlikeshort">Go to longlikeshort dashboard</NavLink>} />
+      <Route index element={<NavLink to="/longlikeshort">Go to longlikeshort dashboard</NavLink>} />
     </Routes>
   </BrowserRouter>
 );
