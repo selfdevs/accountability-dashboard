@@ -26,7 +26,6 @@ const entryGenerator = (offset: number): Entry => {
 
 export const sampleDataGenerator = (): Entry[] => {
   const result = [];
-  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 31; i++) {
     result.push(entryGenerator(i));
   }
