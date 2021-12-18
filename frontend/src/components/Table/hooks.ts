@@ -7,7 +7,7 @@ export const useScrollToCurrentDay = () => {
   useLayoutEffect(() => {
     const currentDay = DateTime.now().get('day');
     if (tbodyRef.current && tbodyRef.current.childNodes[currentDay]) {
-      tbodyRef.current.childNodes[currentDay].scrollIntoView({ block: 'center' });
+      tbodyRef.current.childNodes[currentDay - 1].scrollIntoView({ block: 'center' });
     }
   }, []);
 
