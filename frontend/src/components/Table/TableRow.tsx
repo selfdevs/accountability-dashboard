@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Entry } from '../../mocks/table-data';
+import Entry from '../../entities/Entry';
 
 const TableRow: FC<Entry> = ({
   date, goal, done, comment,

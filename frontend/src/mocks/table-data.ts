@@ -1,12 +1,6 @@
 import { DateTime, Duration } from 'luxon';
 import * as faker from 'faker';
-
-export type Entry = {
-  date: DateTime;
-  goal: number;
-  done: number;
-  comment: string;
-};
+import Entry from '../entities/Entry';
 
 const generateRandomValue = (): number => Math.ceil(Math.random() * 10);
 
