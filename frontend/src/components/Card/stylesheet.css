@@ -1,6 +1,3 @@
 .card {
-    margin: 1rem;
     padding: 1rem;
-    display: inline-block;
-    width: calc(100% - 4rem);
 }
