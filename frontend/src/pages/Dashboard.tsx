@@ -9,7 +9,7 @@ const Dashboard = () => (
     <Social />
     <div className="layout">
       <Table />
-      <div className="flex2">
+      <div className="flex1">
         <ScratchPad />
       </div>
     </div>
