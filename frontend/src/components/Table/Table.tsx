@@ -1,12 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import './styles.css';
-import { sampleDataGenerator } from '../../mocks/table-data';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
 
-const Table = () => {
-  const data = useMemo(sampleDataGenerator, []);
+const Table = ({ data }) => {
   const { tbodyRef } = useScrollToCurrentDay();
 
   return (
