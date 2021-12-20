@@ -1,9 +1,29 @@
 .data-table {
-    margin: 5rem;
+    margin: 2rem;
     height: 80vh;
     display: block;
     overflow: auto;
     position: relative;
+    border-collapse: separate;
+    border-spacing: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: calc(100% - 4rem);
+}
+
+.data-table::-webkit-scrollbar {
+    display: none;
+}
+
+.table-header-bg {
+    position: absolute;
+    height: 30px;
+    top: 2rem;
+    left: 2rem;
+    width: calc(100% - 4rem);
+    background-color: white;
+    /*border: solid 1px navy;*/
+    z-index: 1;
 }
 
 .data-table thead {
@@ -13,6 +33,12 @@
     width: 100%;
     background: linear-gradient(to bottom, white 90%, rgba(255,255,255,0));
     padding-bottom: 1rem;
+    z-index: 2;
+}
+
+.data-table thead tr {
+    background-color: white;
+    border-collapse: collapse;
 }
 
 .data-table th, td {
@@ -22,6 +48,12 @@
 
 .data-table td {
     text-align: center;
+    padding: 0.5rem;
+}
+
+.data-table tbody tr {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin: 1rem;
 }
 
 .data-table tbody td:nth-child(2), td:nth-child(3) {

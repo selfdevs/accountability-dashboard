@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 import './stylesheet.css';
 
-const Card: FC = ({ children }) => (
-  <div className="card">
+type CardProps = {
+  className?: string
+};
+
+const Card: FC<CardProps> = ({ children, className }) => (
+  <div className={`card ${className}`}>
     {children}
   </div>
 );

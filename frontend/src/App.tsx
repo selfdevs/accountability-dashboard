@@ -14,7 +14,7 @@ const App = () => (
         element={(
           <div className="layout">
             <Table />
-            <div>
+            <div className="flex1">
               <ScratchPad />
             </div>
           </div>
