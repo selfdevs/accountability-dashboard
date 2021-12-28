@@ -38,6 +38,7 @@
         "import/prefer-default-export": "off",
         "react/jsx-props-no-spreading": "off",
         "no-plusplus": "off",
+        "linebreak-style": "off",
         "react/require-default-props": "off"
     }
 }
