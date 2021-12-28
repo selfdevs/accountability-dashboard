@@ -1,4 +1,32 @@
+
+h1 {
+    color: #4F93D0;
+    margin: 1rem;
+}
+
 .layout {
     display: flex;
     align-items: flex-end;
+    overflow-x: hidden;
+}
+
+.shadowed {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.flex1 {
+    flex: 1;
+}
+.flex2 {
+    flex: 2;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }

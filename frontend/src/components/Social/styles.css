@@ -1,0 +1,45 @@
+.social-card {
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    width: 200px;
+    height: 50px;
+}
+
+.social-image {
+    margin-right: 1rem;
+}
+
+.social-username {
+    margin: 0 0 0 5px;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.social-icon-button {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 100ms ease-in-out;
+}
+
+.social-icon-button[data-network="discord"]:hover {
+    color: #5865F2;
+}
+.social-icon-button[data-network="github"]:hover {
+    color: black;
+}
+.social-icon-button[data-network="instagram"]:hover {
+    color: #833AB4;
+}
+.social-icon-button[data-network="youtube"]:hover {
+    color: #FF0000;
+}
+
+.social-icon {
+    margin: 5px;
+}

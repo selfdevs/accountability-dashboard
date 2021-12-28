@@ -4,7 +4,7 @@ import Entry from '../../entities/Entry';
 const TableRow: FC<Entry> = ({
   date, goal, done, comment,
 }) => (
-  <tr>
+  <tr className="shadowed">
     <td>{date.toFormat('d ')}</td>
     <td>{goal}</td>
     <td>{done}</td>

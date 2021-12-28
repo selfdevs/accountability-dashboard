@@ -1,26 +1,19 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter, NavLink, Route, Routes,
+  BrowserRouter, Route, Routes,
 } from 'react-router-dom';
-import ScratchPad from './components/ScratchPad/ScrathPad';
-import Table from './components/Table/Table';
+import Dashboard from './pages/Dashboard';
+import Homepage from './pages/Homepage';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       <Route
         path="/:username"
-        element={(
-          <div className="layout">
-            <Table />
-            <div>
-              <ScratchPad />
-            </div>
-          </div>
-        )}
+        element={<Dashboard />}
       />
-      <Route index element={<NavLink to="/longlikeshort">Go to longlikeshort dashboard</NavLink>} />
+      <Route index element={<Homepage />} />
     </Routes>
   </BrowserRouter>
 );

@@ -7,12 +7,16 @@
 .scratch-area {
     border: none;
     height: 200px;
-    width: 500px;
+    width: calc(100% - 1rem);
     margin-top: 20px;
     outline: solid 1px #DEDEDE;
     padding: 0.5rem;
     font-size: 1.2rem;
     border-radius: 5px;
+}
+
+.scratch-card {
+    margin: 1rem;
 }
 
 .scratch-loading {

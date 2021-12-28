@@ -1,8 +1,3 @@
 .card {
-    margin: 1rem;
     padding: 1rem;
-    border-radius: 7px;
-    box-shadow: 0 0 10px #B8B8B8;
-    width: auto;
-    display: inline-block;
 }
