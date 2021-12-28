@@ -1,9 +1,14 @@
+
+h1 {
+    color: black;
+    margin-left: 3rem;
+}
+
 .layout {
     display: flex;
     align-items: flex-end;
     overflow-x: hidden;
     padding: 1rem;
-    height: calc(100vh - 2rem);
 }
 
 .shadowed {

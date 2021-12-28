@@ -12,12 +12,15 @@ const App = () => (
       <Route
         path="/:username"
         element={(
-          <div className="layout">
-            <Table />
-            <div className="flex1">
-              <ScratchPad />
+          <>
+            <h1>Play 10 minutes piano per day</h1>
+            <div className="layout">
+              <Table />
+              <div className="flex1">
+                <ScratchPad />
+              </div>
             </div>
-          </div>
+          </>
         )}
       />
       <Route index element={<NavLink to="/longlikeshort">Go to longlikeshort dashboard</NavLink>} />
