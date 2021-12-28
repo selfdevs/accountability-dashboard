@@ -10,7 +10,7 @@ const Table = () => {
   const { tbodyRef } = useScrollToCurrentDay();
 
   return (
-    <div style={{ position: 'relative', flex: '1 0 400px' }}>
+    <div style={{ position: 'relative', flex: '1' }}>
       <div className="table-header-bg" />
       <table className="data-table">
         <TableHeader />

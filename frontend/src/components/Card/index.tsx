@@ -6,7 +6,7 @@ type CardProps = {
 };
 
 const Card: FC<CardProps> = ({ children, className }) => (
-  <div className={`card ${className}`}>
+  <div className={`${className} card shadowed`}>
     {children}
   </div>
 );

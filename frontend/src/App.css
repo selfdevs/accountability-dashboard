@@ -1,14 +1,13 @@
 
 h1 {
-    color: black;
-    margin-left: 3rem;
+    color: #4F93D0;
+    margin: 1rem;
 }
 
 .layout {
     display: flex;
     align-items: flex-end;
     overflow-x: hidden;
-    padding: 1rem;
 }
 
 .shadowed {
@@ -16,5 +15,18 @@ h1 {
 }
 
 .flex1 {
+    flex: 1;
+}
+.flex2 {
     flex: 2;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }

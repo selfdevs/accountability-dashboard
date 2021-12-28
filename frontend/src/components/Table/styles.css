@@ -1,5 +1,5 @@
 .data-table {
-    margin: 2rem;
+    margin: 1rem;
     height: 80vh;
     display: block;
     overflow: auto;
@@ -8,7 +8,7 @@
     border-spacing: 1rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: calc(100% - 4rem);
+    width: calc(100% - 2rem);
 }
 
 .data-table::-webkit-scrollbar {
@@ -17,12 +17,11 @@
 
 .table-header-bg {
     position: absolute;
-    height: 30px;
-    top: 2rem;
-    left: 2rem;
-    width: calc(100% - 4rem);
+    height: 3rem;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: white;
-    /*border: solid 1px navy;*/
     z-index: 1;
 }
 
