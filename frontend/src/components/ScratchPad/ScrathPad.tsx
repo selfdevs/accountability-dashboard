@@ -7,7 +7,7 @@ const ScratchPad = () => {
   const { loadingText, value, onChangeHandler } = useScratchPad();
 
   return (
-    <Card>
+    <Card className="shadowed">
       <h2 className="scratch-title">Scratchpad</h2>
       <p className="scratch-loading">{loadingText}</p>
       <textarea className="scratch-area" value={value} data-testid="scratch-pad" onChange={onChangeHandler} />

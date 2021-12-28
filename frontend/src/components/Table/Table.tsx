@@ -10,12 +10,15 @@ const Table = () => {
   const { tbodyRef } = useScrollToCurrentDay();
 
   return (
-    <table className="data-table">
-      <TableHeader />
-      <tbody ref={tbodyRef}>
-        {data.map((entry) => <TableRow {...entry} key={entry.date.toLocaleString()} />)}
-      </tbody>
-    </table>
+    <div style={{ position: 'relative', flex: '1 0 400px' }}>
+      <div className="table-header-bg" />
+      <table className="data-table">
+        <TableHeader />
+        <tbody ref={tbodyRef}>
+          {data.map((entry) => <TableRow {...entry} key={entry.date.toLocaleString()} />)}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

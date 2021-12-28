@@ -1,4 +1,15 @@
 .layout {
     display: flex;
     align-items: flex-end;
+    overflow-x: hidden;
+    padding: 1rem;
+    height: calc(100vh - 2rem);
+}
+
+.shadowed {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.flex1 {
+    flex: 2;
 }
