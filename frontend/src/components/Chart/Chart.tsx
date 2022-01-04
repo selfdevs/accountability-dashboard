@@ -26,7 +26,8 @@ const Chart = () => (
           fill: 'lightgray',
           textAnchor: 'end',
         }}
-        ticks={Array(11).fill(0).map((value, index) => ({ y: index, label: index }))}
+        ticks={Array(Math.max(...[...series[0].data, ...series[1].data]) + 1).fill(0)
+          .map((value, index) => ({ y: index, label: index }))}
       />
       <Lines />
       <Labels />
