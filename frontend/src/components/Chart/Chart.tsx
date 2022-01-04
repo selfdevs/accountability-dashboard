@@ -11,7 +11,7 @@ const series = [{
 }];
 
 const Chart = () => (
-  <RumbleChart height={400} width={800} series={series} minY={0} maxY={10} minX={0} maxX={31} className="chart-container">
+  <RumbleChart height={300} width={800} series={series} className="chart-container">
 
     <Layer width="90%" height="60%" position="middle center">
       <Ticks
