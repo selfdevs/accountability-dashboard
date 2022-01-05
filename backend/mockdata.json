@@ -1,24 +1,44 @@
 {
   "user": {
-    "id":         99,
-    "name":       "long.integer",
-    "instagram":  "long.integer",
-    "linkedin":   "https://linkedin.com/in/longshong",
-    "github":     "https://github.com/longinteger017",
-    "homepage":   "https://theselfdev.com/",
-    "image_url":  "https://theselfdev.com/user/name"
+    "id": 99,
+    "name": "long.integer",
+    "instagram": "long.integer",
+    "linkedin": "https://linkedin.com/in/longshong",
+    "github": "https://github.com/longinteger017",
+    "homepage": "https://theselfdev.com/",
+    "image_url": "https://theselfdev.com/user/name"
   },
-   "table": {
-     "date":  ["01.01.2021", "02.01.2021"],
-     "goal":  ["1","2"],
-     "done":  ["0","2"],
-     "notes": []
-  },
+  "data": [
+    {
+      "date": "2022-01-01T00:00:00.000Z",
+      "goal": 1,
+      "done": 0,
+      "notes": "No time for this sadly"
+    },
+    {
+      "date": "2022-01-02T00:00:00.000Z",
+      "goal": 1,
+      "done": 1,
+      "notes": "I started! Let's do this"
+    },
+    {
+      "date": "2022-01-03T00:00:00.000Z",
+      "goal": 1,
+      "done": 1,
+      "notes": "Still working video one, everything went well"
+    },
+    {
+      "date": "2022-01-04T00:00:00.000Z",
+      "goal": 1,
+      "done": 2,
+      "notes": "Already working on the second one, on fire!"
+    }
+  ],
   "chart": {
-      "title":      "creating 4 youtube videos",
-      "goal_color": "blue",
-      "done_color": "red",
-      "steps":      ["days", "weeks"]
+    "title": "creating 4 youtube videos",
+    "goal_color": "blue",
+    "done_color": "red",
+    "steps": "days"
   },
   "scratch_board": {
     "formatted_text": "- research topic X\n- writing script\n- writing storyboard\n-defining cinematic scenes...."
