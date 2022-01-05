@@ -1,22 +1,32 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '../components/Table/Table';
 import ScratchPad from '../components/ScratchPad/ScrathPad';
 import Social from '../components/Social/Social';
 import Chart from '../components/Chart/Chart';
-import { sampleDataGenerator } from '../mocks/table-data';
 
 const Dashboard = () => {
-  const data = useMemo(sampleDataGenerator, []);
+  const [fetchedData, setFetchedData] = useState<any>();
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/selfdevs/accountability-dashboard/develop/backend/mockdata.json')
+      .then((response) => response.json()).then(setFetchedData);
+  }, []);
+
+  if (!fetchedData) return null;
 
   return (
     <>
-      <h1>Play 10 minutes piano per day</h1>
-      <Social />
+      <h1>{fetchedData.chart.title}</h1>
+      <Social
+        name={fetchedData?.user?.name}
+        github={fetchedData?.user?.github}
+        linkedIn={fetchedData?.user?.linkedin}
+      />
       <div className="layout">
-        <Table data={data} />
+        <Table data={fetchedData} />
         <div className="flex1">
-          <Chart />
-          <ScratchPad />
+          <Chart entries={fetchedData.data} />
+          <ScratchPad defaultText={fetchedData?.scratch_board?.formatted_text} />
         </div>
       </div>
     </>

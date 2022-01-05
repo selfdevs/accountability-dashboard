@@ -4,7 +4,6 @@ import {
 } from 'react';
 import { getFromStorage, saveToStorage } from '../../modules/storage/io';
 import { SAVING_DELAY, SCRATCHPAD_STORAGE_KEY } from './constants';
-import data from '../../mocks/scratchpad-data.json';
 import { getStateText } from './utils';
 
 type ScratchPadHook = {
@@ -13,7 +12,7 @@ type ScratchPadHook = {
   value: string
 };
 
-export const useScratchPad = (): ScratchPadHook => {
+export const useScratchPad = (defaultText: string): ScratchPadHook => {
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const timer = useRef(null);
@@ -37,7 +36,7 @@ export const useScratchPad = (): ScratchPadHook => {
     if (restoredData) {
       setValue(restoredData);
     } else {
-      setValue(data.text);
+      setValue(defaultText);
     }
   }, []);
 

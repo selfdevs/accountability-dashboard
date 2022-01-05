@@ -39,6 +39,9 @@
 .social-icon-button[data-network="youtube"]:hover {
     color: #FF0000;
 }
+.social-icon-button[data-network="linkedin"]:hover {
+    color: #0077B5;
+}
 
 .social-icon {
     margin: 5px;

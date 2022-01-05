@@ -6,6 +6,7 @@ import { useScrollToCurrentDay } from './hooks';
 
 const Table = ({ data }) => {
   const { tbodyRef } = useScrollToCurrentDay();
+  const entries = data.data;
 
   return (
     <div style={{ position: 'relative', flex: '1' }}>
@@ -13,7 +14,7 @@ const Table = ({ data }) => {
       <table className="data-table">
         <TableHeader />
         <tbody ref={tbodyRef}>
-          {data.map((entry) => <TableRow {...entry} key={entry.date.toLocaleString()} />)}
+          {entries.map((entry) => <TableRow {...entry} key={entry.date.toLocaleString()} />)}
         </tbody>
       </table>
     </div>
