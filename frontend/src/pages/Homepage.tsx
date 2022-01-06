@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import LoginButton from '../components/LoginButton/LoginButton';
 
 const Homepage = () => (
-  <NavLink to="/longlikeshort">Go to longlikeshort dashboard</NavLink>
+  <LoginButton />
 );
 
 export default Homepage;

@@ -1,0 +1,24 @@
+.login-button-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.login-button {
+    background-color: #5865F2;
+    border: none;
+    padding: 1rem 4rem;
+    font-size: 1.25rem;
+    color: white;
+    margin: 2rem;
+    display: block;
+    text-align: left;
+}
+
+.login-button svg {
+    top: 3rem;
+    left: 3rem;
+    position: absolute;
+}
