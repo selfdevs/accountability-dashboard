@@ -1,14 +1,21 @@
 import React, { FC } from 'react';
-import Entry from '../../entities/Entry';
+import { DateTime } from 'luxon';
 
-const TableRow: FC<Entry> = ({
-  date, goal, done, comment,
+type TableRowProps = {
+  date: string
+  goal: number
+  done: number
+  notes: string
+};
+
+const TableRow: FC<TableRowProps> = ({
+  date, goal, done, notes,
 }) => (
   <tr className="shadowed">
-    <td>{date.toFormat('d ')}</td>
+    <td>{DateTime.fromISO(date).toFormat('d ')}</td>
     <td>{goal}</td>
     <td>{done}</td>
-    <td>{comment}</td>
+    <td>{notes}</td>
   </tr>
 );
 

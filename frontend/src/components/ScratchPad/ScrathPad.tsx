@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Card from '../Card';
 import './stylesheet.css';
 import { useScratchPad } from './hooks';
 
-const ScratchPad = () => {
-  const { loadingText, value, onChangeHandler } = useScratchPad();
+type ScratchPadProps = {
+  defaultText: string
+};
+
+const ScratchPad: FC<ScratchPadProps> = ({ defaultText }) => {
+  const { loadingText, value, onChangeHandler } = useScratchPad(defaultText);
 
   return (
     <Card className="flex-column scratch-card">
