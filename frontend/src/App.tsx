@@ -5,16 +5,19 @@ import {
 } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
+import Auth from './contexts/Auth';
 
 const App = () => (
   <BrowserRouter>
-    <Routes>
-      <Route
-        path="/:username"
-        element={<Dashboard />}
-      />
-      <Route index element={<Homepage />} />
-    </Routes>
+    <Auth>
+      <Routes>
+        <Route
+          path="/:username"
+          element={<Dashboard />}
+        />
+        <Route index element={<Homepage />} />
+      </Routes>
+    </Auth>
   </BrowserRouter>
 );
 
