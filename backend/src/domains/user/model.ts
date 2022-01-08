@@ -4,6 +4,7 @@ import {DISCORD_CREDENTIALS_MODEL_NAME} from "../discordCredentials/model";
 export const USER_MODEL_NAME = 'User';
 
 export interface UserInterface {
+  _id: string;
   email: string;
   username: string;
   discordCredentials: ObjectId;

@@ -1,12 +1,12 @@
 import React, {
-  createContext,
-  FC, useCallback, useEffect, useState,
+  createContext, FC, useCallback, useContext, useEffect, useState,
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getFromStorage } from '../modules/storage/io';
 import { request } from '../modules/http/client';
+import { User } from '../entities/User';
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext<User | undefined>(undefined);
 
 enum Status {
   PENDING,
@@ -20,6 +20,7 @@ const routes = {
 
 const Auth: FC = ({ children }) => {
   const [, setStatus] = useState<Status>(Status.PENDING);
+  const [user, setUser] = useState<User | undefined>(undefined);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -34,7 +35,8 @@ const Auth: FC = ({ children }) => {
       if (!token) {
         handleVisitor();
       }
-      request('/api/user').then(() => {
+      request('/api/user').then((data) => {
+        setUser(data);
         setStatus(Status.LOGGED);
       }).catch(() => {
         handleVisitor();
@@ -42,7 +44,9 @@ const Auth: FC = ({ children }) => {
     }
   }, [navigate, pathname]);
 
-  return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
+
+export const useUser = () => useContext(AuthContext);
 
 export default Auth;

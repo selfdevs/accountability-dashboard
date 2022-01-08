@@ -10,6 +10,7 @@ import 'newrelic';
 import './services/envService';
 import './services/databaseService';
 import {UserInterface} from "./domains/user/model";
+import entryRouter from "./routers/entry";
 
 export interface ApplicationContext {
   user: UserInterface;
@@ -23,6 +24,7 @@ app.use(koaBody());
 
 apiRouter.use('/api/auth', authRouter.routes());
 apiRouter.use('/api/user', userRouter.routes());
+apiRouter.use('/api/entry', entryRouter.routes());
 
 app.use(apiRouter.routes());
 app.use(indexNewRelicScriptInjection);
