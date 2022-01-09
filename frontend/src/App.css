@@ -10,6 +10,10 @@ h1 {
     overflow-x: hidden;
 }
 
+.layout > *:not(:first-child) {
+    margin-left: 1rem;
+}
+
 .shadowed {
     box-shadow: 0 2px 2px rgba(0,0,0,0.05);
 }

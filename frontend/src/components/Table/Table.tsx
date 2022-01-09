@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import './styles.css';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
 import EntryEditor from '../EntryEditor/EntryEditor';
+import Entry from '../../entities/Entry';
 
-const Table = ({ data }) => {
+type TableProps = {
+  className?: string;
+  data: Entry[];
+};
+
+const Table: FC<TableProps> = ({ data, className }) => {
   const [editId, setEditId] = useState<string>(undefined);
   const { tbodyRef } = useScrollToCurrentDay(data.length > 0);
 
   return (
-    <div className="table-wrapper" style={{ position: 'relative', flex: '1' }}>
+    <div
+      className={`table-wrapper ${className || ''}`}
+      style={{ position: 'relative', flex: '1' }}
+    >
       <table className="data-table">
         <TableHeader />
         <tbody ref={tbodyRef}>
@@ -19,9 +28,7 @@ const Table = ({ data }) => {
           ))}
         </tbody>
       </table>
-      <div className="entry-editor">
-        <EntryEditor entries={data} editId={editId} setEditId={setEditId} />
-      </div>
+      <EntryEditor entries={data} editId={editId} setEditId={setEditId} />
     </div>
   );
 };

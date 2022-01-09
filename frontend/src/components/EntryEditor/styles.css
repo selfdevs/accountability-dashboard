@@ -1,5 +1,8 @@
 .entry-editor {
     box-shadow: 0 -10px 10px white;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
 }
 
 

@@ -44,12 +44,12 @@ const TableRow: FC<TableRowProps> = ({
         <FontAwesomeIcon
           icon={faPen}
           onClick={editEntry}
-          className="action action-delete"
+          className="action action-edit"
         />
         <FontAwesomeIcon
           icon={faTrash}
           onClick={deleteEntry}
-          className="action action-edit"
+          className="action action-delete"
         />
       </td>
     </tr>

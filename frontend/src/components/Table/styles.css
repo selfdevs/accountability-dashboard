@@ -11,13 +11,6 @@
     overflow: auto;
 }
 
-.entry-editor {
-    position: sticky;
-    bottom: 0;
-    background-color: white;
-    padding: 1rem;
-}
-
 .data-table::-webkit-scrollbar {
     display: none;
 }
