@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
+import EntryEditor from '../EntryEditor/EntryEditor';
 
 const Table = ({ data }) => {
-  const { tbodyRef } = useScrollToCurrentDay();
+  const [editId, setEditId] = useState<string>(undefined);
+  const { tbodyRef } = useScrollToCurrentDay(data.length > 0);
 
   return (
-    <div style={{ position: 'relative', flex: '1' }}>
-      <div className="table-header-bg" />
+    <div className="table-wrapper" style={{ position: 'relative', flex: '1' }}>
       <table className="data-table">
         <TableHeader />
         <tbody ref={tbodyRef}>
-          {data.map((entry) => <TableRow {...entry} key={entry.date} />)}
+          {data.map((entry) => (
+            <TableRow {...entry} key={entry.date} setEditId={setEditId} />
+          ))}
         </tbody>
       </table>
+      <div className="entry-editor">
+        <EntryEditor entries={data} editId={editId} setEditId={setEditId} />
+      </div>
     </div>
   );
 };

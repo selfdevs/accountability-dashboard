@@ -18,7 +18,7 @@ const Dashboard = () => {
       <div className="layout">
         <Table data={data || []} />
         <div className="flex1">
-          <Chart entries={[]} />
+          <Chart entries={data || []} />
           <ScratchPad defaultText="Hello world" />
         </div>
       </div>

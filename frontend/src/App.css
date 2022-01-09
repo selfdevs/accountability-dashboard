@@ -1,6 +1,6 @@
 
 h1 {
-    color: #4F93D0;
+    color: var(--primary);
     margin: 1rem;
 }
 
@@ -29,4 +29,37 @@ h1 {
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+input {
+    margin: 1rem;
+}
+
+input[type="number"] {
+    width: 5rem;
+}
+
+#mobile-disclaimer {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    #root {
+        height: 0;
+        overflow: hidden;
+    }
+
+    #mobile-disclaimer {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        background-color: white;
+        height: calc(100vh - 80vh);
+        width: calc(100vw - 6rem);
+        padding: 40vh 3rem;
+        z-index: 9999;
+        margin: 0;
+        text-align: center;
+    }
 }

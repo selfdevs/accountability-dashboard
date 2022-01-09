@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import {
-  BrowserRouter, Route, Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
@@ -14,11 +12,11 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Auth>
+        <p id="mobile-disclaimer">
+          This app is not available for this screen size
+        </p>
         <Routes>
-          <Route
-            path="/:username"
-            element={<Dashboard />}
-          />
+          <Route path="/:username" element={<Dashboard />} />
           <Route index element={<Homepage />} />
         </Routes>
       </Auth>

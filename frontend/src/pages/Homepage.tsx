@@ -13,16 +13,19 @@ const Homepage = () => {
   useEffect(() => {
     const code = params.get('code');
     if (code) {
-      request('/api/auth/discord', { code })
+      request('/auth/discord', 'POST', { code })
         .then(({ token }: { token: string }) => {
           saveToStorage('accessToken', token);
-          navigate('/longlikeshort');
+          navigate('/me');
         });
     }
   }, [params, navigate]);
 
   return (
-    <a href={LOGIN_URL}><LoginButton /></a>
+    <LoginButton onClick={() => {
+      window.location.href = LOGIN_URL;
+    }}
+    />
   );
 };
 

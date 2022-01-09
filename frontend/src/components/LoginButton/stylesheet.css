@@ -15,6 +15,7 @@
     margin: 2rem;
     display: block;
     text-align: left;
+    cursor: pointer;
 }
 
 .login-button svg {

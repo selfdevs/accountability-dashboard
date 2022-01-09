@@ -2,6 +2,7 @@ import Koa from "koa";
 import {getTokenFromAuthorizationHeader} from "../services/authService";
 import {decode, JwtPayload, verify} from "jsonwebtoken";
 import User from "../domains/user/model";
+import {errorResponse} from "../services/httpService";
 
 interface Payload extends JwtPayload {
   userId: string;
@@ -23,7 +24,7 @@ const authMiddleware: Koa.Middleware = async (ctx, next) => {
     await next();
   } catch (e) {
     console.error(e.message);
-    ctx.response.status = 401;
+    errorResponse(ctx, 'Unauthorized', 401);
   }
 };
 

@@ -16,16 +16,20 @@ require("./services/envService");
 require("./services/databaseService");
 const entry_1 = __importDefault(require("./routers/entry"));
 const app = new koa_1.default();
-const apiRouter = new koa_router_1.default();
+const apiRouter = new koa_router_1.default({ prefix: '/api' });
 app.use((0, cors_1.default)());
 app.use((0, koa_body_1.default)());
-apiRouter.use('/api/auth', auth_1.default.routes());
-apiRouter.use('/api/user', user_1.default.routes());
-apiRouter.use('/api/entry', entry_1.default.routes());
+apiRouter.use('/auth', auth_1.default.routes());
+apiRouter.use('/user', user_1.default.routes());
+apiRouter.use('/entry', entry_1.default.routes());
 app.use(apiRouter.routes());
+app.use((ctx, next) => {
+    if (!ctx.url.startsWith('/api'))
+        return next();
+});
 app.use(monitoringService_1.indexNewRelicScriptInjection);
 app.use((0, koa_static_1.default)('../frontend/build'));
-app.listen(5000, () => {
+app.listen(8001, () => {
     console.info('server started');
 });
 //# sourceMappingURL=index.js.map

@@ -7,10 +7,14 @@ const generateRandomValue = (): number => Math.ceil(Math.random() * 10);
 const entryGenerator = (offset: number): Entry => {
   const goal = generateRandomValue();
   const done = generateRandomValue();
-  const date = DateTime.now().startOf('month').plus(Duration.fromObject({ days: offset })).toISODate();
+  const date = DateTime.now()
+    .startOf('month')
+    .plus(Duration.fromObject({ days: offset }))
+    .toISODate();
   const comment = faker.company.catchPhrase();
 
   return {
+    _id: '',
     goal,
     date,
     done,

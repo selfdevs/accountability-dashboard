@@ -15,7 +15,7 @@ enum Status {
 }
 
 const routes = {
-  '/longlikeshort': Status.LOGGED,
+  '/me': Status.LOGGED,
 };
 
 const Auth: FC = ({ children }) => {
@@ -35,7 +35,7 @@ const Auth: FC = ({ children }) => {
       if (!token) {
         handleVisitor();
       }
-      request('/api/user').then((data) => {
+      request('/user').then((data) => {
         setUser(data);
         setStatus(Status.LOGGED);
       }).catch(() => {

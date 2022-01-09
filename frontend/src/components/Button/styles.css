@@ -1,0 +1,17 @@
+.button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    margin: 10px;
+    padding: 3px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button-confirm {
+    background-color: forestgreen;
+}
+
+.button-cancel {
+    background-color: darkred;
+}
