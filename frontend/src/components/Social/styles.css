@@ -4,6 +4,15 @@
     top: 2rem;
     width: 200px;
     height: 50px;
+    background-color: white;
+}
+
+#logout-button {
+    background: none;
+    color: var(--alert);
+    border: none;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 .social-image {
