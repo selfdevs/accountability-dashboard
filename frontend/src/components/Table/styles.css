@@ -7,6 +7,7 @@
 }
 
 .table-wrapper {
+    margin-top: 2rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
     height: 80vh;
@@ -65,15 +66,15 @@
 }
 
 .action {
-    color: lightgray;
+    color: var(--lightgray);
     cursor: pointer;
     margin: 5px;
 }
 
 .action-delete:hover {
-    color: red;
+    color: var(--alert);
 }
 
 .action-edit:hover {
-    color: navy;
+    color: var(--secondary);
 }

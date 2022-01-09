@@ -1,6 +1,8 @@
 :root {
   --primary: #4F93D0;
+  --secondary: navy;
   --alert: crimson;
+  --lightgray: lightgray;
   --confirm: forestgreen;
 }
 
@@ -15,7 +17,7 @@ body {
 
 a {
   text-decoration: none;
-  color: navy;
+  color: var(--secondary);
 }
 
 code {

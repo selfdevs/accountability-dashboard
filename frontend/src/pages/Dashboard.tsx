@@ -6,6 +6,7 @@ import Social from '../components/Social/Social';
 import Chart from '../components/Chart/Chart';
 import { useUser } from '../contexts/Auth';
 import { fetchEntries } from '../entities/Entry';
+import EditableTitle from '../components/EditableTitle/EditableTitle';
 
 const Dashboard = () => {
   const user = useUser();
@@ -13,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>{user?.dashboardTitle}</h1>
+      <EditableTitle title={user?.dashboardTitle} />
       <Social />
       <div className="layout">
         <Table data={data || []} />

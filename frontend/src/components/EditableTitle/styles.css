@@ -1,0 +1,31 @@
+.editable-title-container {
+    display: flex;
+    align-items: center;
+    color: var(--lightgray);
+}
+
+.editable-title-container-edit {
+    color: var(--confirm);
+}
+
+
+.editable-title-container svg {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.editable-title-container-edit svg {
+    opacity: 1;
+}
+
+.editable-title-container:hover svg {
+    opacity: 1;
+}
+
+.editable-title-container input {
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    color: var(--primary);
+}
