@@ -13,5 +13,5 @@
 }
 
 .toast-visible {
-    transform: translateY(-3rem) translateX(-50%);
+    transform: translateY(-2rem) translateX(-50%);
 }
