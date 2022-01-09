@@ -45,6 +45,7 @@ const EditableTitle = ({ title }) => {
           type="text"
           ref={inputRef}
           value={newTitle}
+          onBlur={handleSubmit}
           onChange={(e) => setNewTitle(e.target.value)}
         />
       ) : (

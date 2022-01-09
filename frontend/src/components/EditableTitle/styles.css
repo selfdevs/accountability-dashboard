@@ -33,6 +33,7 @@
     padding: 0;
     outline: solid 1px var(--lightgray);
     font-size: 2rem;
+    font-weight: bolder;
     color: var(--primary);
     margin: 0;
 }
