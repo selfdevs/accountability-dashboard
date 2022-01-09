@@ -3,10 +3,10 @@
 }
 
 
-.entry-editor input[type="number"], textarea {
+.entry-editor input[type="number"], .entry-editor textarea {
     margin: 0.5rem;
 }
 
 .entry-editor textarea {
-    width: calc(100% - 1rem);
+    width: calc(100% - 2rem);
 }

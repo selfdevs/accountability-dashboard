@@ -102,7 +102,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
         }
         placeholder="Comment"
       />
-      <p style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <Button className="button-confirm" type="submit">
           <FontAwesomeIcon icon={faCheck} size="1x" />
           &nbsp;Save
@@ -111,7 +111,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
           <FontAwesomeIcon icon={faTimes} size="1x" />
           &nbsp;{editId ? 'Cancel' : 'Clear'}
         </Button>
-      </p>
+      </div>
     </form>
   );
 };
