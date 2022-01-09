@@ -5,6 +5,7 @@
     margin: 10px;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    font-weight: bolder;
 }
 
 .button-confirm {
