@@ -4,10 +4,9 @@
 }
 
 .table-wrapper {
-    margin-top: 2rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    height: 80vh;
+    height: 100%;
     overflow: auto;
 }
 
