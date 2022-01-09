@@ -29,4 +29,5 @@
     outline: solid 1px var(--lightgray);
     font-size: 2rem;
     color: var(--primary);
+    margin: 1rem;
 }
