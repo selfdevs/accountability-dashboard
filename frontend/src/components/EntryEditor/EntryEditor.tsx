@@ -7,6 +7,7 @@ import { request } from '../../modules/http/client';
 import Entry from '../../entities/Entry';
 import { Actions, initialState, reducer } from './reducer';
 import Button from '../Button/Button';
+import { useNotify } from '../../contexts/Notification';
 
 type EntryEditorProps = {
   entries: Entry[];
@@ -16,6 +17,7 @@ type EntryEditorProps = {
 
 const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const notify = useNotify();
   const queryClient = useQueryClient();
 
   const reset = useCallback(() => {
@@ -36,8 +38,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
         await queryClient.invalidateQueries('entries');
         if (editId) reset();
       })
-      // eslint-disable-next-line no-console
-      .catch((e) => console.error(e));
+      .catch((e) => notify(e.message));
   };
 
   useEffect(() => {

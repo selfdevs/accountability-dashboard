@@ -3,15 +3,14 @@
     color: white;
     border: none;
     margin: 10px;
-    padding: 3px 20px;
-    border-radius: 3px;
+    padding: 0.5rem 1rem;
     cursor: pointer;
 }
 
 .button-confirm {
-    background-color: forestgreen;
+    background-color: var(--confirm);
 }
 
 .button-cancel {
-    background-color: darkred;
+    background-color: var(--alert);
 }

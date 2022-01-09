@@ -1,5 +1,7 @@
 :root {
   --primary: #4F93D0;
+  --alert: crimson;
+  --confirm: forestgreen;
 }
 
 body {

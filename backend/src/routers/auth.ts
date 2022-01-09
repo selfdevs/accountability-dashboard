@@ -3,6 +3,7 @@ import { generateAndStoreDiscordCredentials } from '../services/discordService';
 import User from '../domains/user/model';
 import { generateJWT } from '../services/authService';
 import newrelic from 'newrelic';
+import { errorResponse } from '../services/httpService';
 
 const authRouter = new Router();
 
@@ -25,14 +26,8 @@ authRouter.post('/discord', async (ctx, next) => {
   } catch (e) {
     newrelic.noticeError(e);
     console.error(e.message);
-    ctx.status = 500;
+    errorResponse(ctx, e.message);
   }
-});
-
-authRouter.get('/test', async (ctx, next) => {
-  const user = new User({ email: 'clement@champouillon.com ' });
-  await user.save();
-  ctx.response.status = 200;
 });
 
 export default authRouter;

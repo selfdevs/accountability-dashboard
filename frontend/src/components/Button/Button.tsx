@@ -3,7 +3,7 @@ import './styles.css';
 
 const Button = ({ children, className, ...props }) => (
   // eslint-disable-next-line react/button-has-type
-  <button className={`button ${className}`} {...props}>
+  <button className={`button shadowed ${className}`} {...props}>
     {children}
   </button>
 );

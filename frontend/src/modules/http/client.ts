@@ -10,7 +10,9 @@ export const request = async (path: string, method?: string, data?: object) => {
     },
     ...(data ? { body: JSON.stringify(data) } : {}),
   });
-  if (!response.ok) throw Error('Error');
+  const parsed = await response.json();
+  if (response.status === 401) window.location.href = '/';
+  if (!response.ok) throw Error(parsed.message);
 
-  return response.json();
+  return parsed;
 };

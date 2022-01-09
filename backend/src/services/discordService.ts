@@ -7,7 +7,7 @@ import {
 import DiscordCredentials, {
   DiscordCredentialsInterface,
 } from '../domains/discordCredentials/model';
-import { HydratedDocument } from 'mongoose';
+import { Error, HydratedDocument } from 'mongoose';
 
 type TokenResponse = {
   access_token: string;
@@ -32,7 +32,9 @@ export const exchangeTokenWithAuthToken = async (
     headers: generateContentTypeHeader('application/x-www-form-urlencoded'),
     body: generateSearchParams(payload),
   });
-  return response.json();
+  const data = await response.json();
+  if (data.error) throw new Error(data.error_description);
+  return data;
 };
 
 type GenerateAndStoreDiscordCredentials = {
@@ -52,6 +54,13 @@ export const generateAndStoreDiscordCredentials = async (
     refreshToken: discordData.refresh_token,
   });
   await discordCredentialsEntity.save();
+  if (!process.env.WHITELISTED_DISCORD_IDS)
+    console.error('Whitelist not found in env');
+  if (
+    !process.env.WHITELISTED_DISCORD_IDS.split(',').includes(discordUser.id)
+  ) {
+    throw new Error('User not whitelisted');
+  }
   return {
     email: discordUser.email,
     username: discordUser.username,
