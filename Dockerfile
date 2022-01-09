@@ -1,18 +1,16 @@
 FROM node:16
 
-WORKDIR app
-
-WORKDIR frontend
+WORKDIR /app/frontend
 COPY /frontend/package.json .
 COPY /frontend/yarn.lock .
 RUN yarn
 
 WORKDIR /app/backend
-COPY /frontend/package.json .
-COPY /frontend/yarn.lock .
+COPY /backend/package.json .
+COPY /backend/yarn.lock .
 RUN yarn
 
-WORKDIR frontend
+WORKDIR /app/frontend
 COPY /frontend .
 RUN yarn build
 
