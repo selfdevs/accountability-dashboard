@@ -18,7 +18,7 @@ const App = () => (
             This app is not available for this screen size
           </p>
           <Routes>
-            <Route path="/:username" element={<Dashboard />} />
+            <Route path="/me" element={<Dashboard />} />
             <Route index element={<Homepage />} />
           </Routes>
         </Auth>
