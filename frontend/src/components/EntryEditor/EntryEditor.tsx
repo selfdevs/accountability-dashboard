@@ -8,6 +8,7 @@ import Entry from '../../entities/Entry';
 import { Actions, initialState, reducer } from './reducer';
 import Button from '../Button/Button';
 import { useNotify } from '../../contexts/Notification';
+import './styles.css';
 
 type EntryEditorProps = {
   entries: Entry[];
@@ -51,7 +52,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
   }, [editId, entries]);
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit} className="entry-editor">
       <input
         type="number"
         placeholder="Day"
@@ -63,6 +64,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
         }
         step={1}
         min={1}
+        max={31}
         value={state.day || ''}
         disabled={state.edit}
       />

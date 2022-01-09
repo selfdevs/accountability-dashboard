@@ -1,0 +1,12 @@
+.entry-editor {
+    box-shadow: 0 -10px 10px white;
+}
+
+
+.entry-editor input[type="number"], textarea {
+    margin: 0.5rem;
+}
+
+.entry-editor textarea {
+    width: calc(100% - 1rem);
+}

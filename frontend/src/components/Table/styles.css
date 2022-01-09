@@ -1,9 +1,6 @@
 .data-table {
-    margin: 1rem;
-    position: relative;
-    border-collapse: separate;
-    border-spacing: 1rem;
-    width: calc(100% - 2rem);
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .table-wrapper {
@@ -33,10 +30,7 @@
     background-color: white;
     padding-bottom: 1rem;
     z-index: 2;
-}
-
-.data-table thead tr {
-    border-collapse: collapse;
+    box-shadow: 0 10px 10px white;
 }
 
 .data-table thead th {
@@ -45,11 +39,11 @@
 
 .data-table th, td {
     text-align: left;
+    padding: 1rem;
 }
 
 .data-table td {
     text-align: center;
-    padding: 0.5rem;
 }
 
 .data-table tbody tr {

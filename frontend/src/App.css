@@ -6,12 +6,12 @@ h1 {
 
 .layout {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     overflow-x: hidden;
 }
 
 .shadowed {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.05);
 }
 
 .flex1 {
@@ -31,8 +31,10 @@ h1 {
     flex-direction: column;
 }
 
-input {
-    margin: 1rem;
+input, textarea {
+    border: none;
+    padding: 0.5rem;
+    outline: solid 1px var(--lightgray);
 }
 
 input[type="number"] {
