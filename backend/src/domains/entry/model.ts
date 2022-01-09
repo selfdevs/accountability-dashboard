@@ -1,5 +1,5 @@
-import {model, ObjectId, Schema} from "mongoose";
-import {USER_MODEL_NAME} from "../user/model";
+import { model, ObjectId, Schema } from 'mongoose';
+import { USER_MODEL_NAME } from '../user/model';
 
 const ENTRY_MODEL_NAME = 'Entry';
 

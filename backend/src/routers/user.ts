@@ -1,9 +1,9 @@
-import Router from "koa-router";
-import authMiddleware from "../middlewares/authMiddleware";
-import {ApplicationContext} from "../index";
-import {DefaultState} from "koa";
-import newrelic from "newrelic";
-import User from "../domains/user/model";
+import Router from 'koa-router';
+import authMiddleware from '../middlewares/authMiddleware';
+import { ApplicationContext } from '../index';
+import { DefaultState } from 'koa';
+import newrelic from 'newrelic';
+import User from '../domains/user/model';
 
 const userRouter = new Router<DefaultState, ApplicationContext>();
 

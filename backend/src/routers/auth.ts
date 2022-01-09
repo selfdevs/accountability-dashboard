@@ -1,15 +1,16 @@
 import Router from 'koa-router';
-import { generateAndStoreDiscordCredentials } from "../services/discordService";
-import User from "../domains/user/model";
-import { generateJWT } from "../services/authService";
-import newrelic from "newrelic";
+import { generateAndStoreDiscordCredentials } from '../services/discordService';
+import User from '../domains/user/model';
+import { generateJWT } from '../services/authService';
+import newrelic from 'newrelic';
 
 const authRouter = new Router();
 
 authRouter.post('/discord', async (ctx, next) => {
   try {
     const { code } = ctx.request.body;
-    const { email, username, discordCredentialsEntity } = await generateAndStoreDiscordCredentials(code);
+    const { email, username, discordCredentialsEntity } =
+      await generateAndStoreDiscordCredentials(code);
     let user = await User.findOne({ email });
     if (!user) {
       user = new User({ email, username });
@@ -29,7 +30,7 @@ authRouter.post('/discord', async (ctx, next) => {
 });
 
 authRouter.get('/test', async (ctx, next) => {
-  const user = new User({ email: 'clement@champouillon.com '});
+  const user = new User({ email: 'clement@champouillon.com ' });
   await user.save();
   ctx.response.status = 200;
 });

@@ -14,6 +14,9 @@ const discordCredentialsSchema = new Schema<DiscordCredentialsInterface>({
   refreshToken: { type: String, required: true },
 });
 
-const discordCredentialsModel = model(DISCORD_CREDENTIALS_MODEL_NAME, discordCredentialsSchema);
+const discordCredentialsModel = model(
+  DISCORD_CREDENTIALS_MODEL_NAME,
+  discordCredentialsSchema
+);
 
 export default discordCredentialsModel;
