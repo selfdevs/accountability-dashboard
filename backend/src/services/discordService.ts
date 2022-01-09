@@ -55,7 +55,7 @@ export const generateAndStoreDiscordCredentials = async (
   });
   await discordCredentialsEntity.save();
   if (!process.env.WHITELISTED_DISCORD_IDS)
-    console.error('Whitelist not found in env');
+    throw new Error('Whitelist not found in env');
   if (
     !process.env.WHITELISTED_DISCORD_IDS.split(',').includes(discordUser.id)
   ) {
