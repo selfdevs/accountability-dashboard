@@ -9,7 +9,7 @@ export interface UserInterface {
   username: string;
   discordCredentials: ObjectId;
   picture?: string;
-  dashboardTitle?: string;
+  dashboardTitle: string;
   instagram?: string;
 }
 
@@ -22,7 +22,7 @@ export const userSchema = new Schema<UserInterface>({
     required: true,
   },
   picture: { type: String },
-  dashboardTitle: { type: String },
+  dashboardTitle: { type: String, default: 'My dashboard', required: true },
   instagram: { type: String },
 });
 
