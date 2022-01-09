@@ -35,6 +35,7 @@ input, textarea {
     border: none;
     padding: 0.5rem;
     outline: solid 1px var(--lightgray);
+    resize: none;
 }
 
 input[type="number"] {
