@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
 import Auth from './contexts/Auth';
@@ -26,15 +27,28 @@ const App = () => (
         </Auth>
       </BrowserRouter>
     </QueryClientProvider>
-    <a
-      href="https://github.com/selfdevs/accountability-dashboard"
-      id="github-watermark"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FontAwesomeIcon icon={faGithub} />
-      &nbsp;&nbsp;GitHub
-    </a>
+    <section id="watermarks">
+      <a
+        href="https://theselfdev.com/"
+        id="self-dev-watermark"
+        className="watermark"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <FontAwesomeIcon icon={faLink} />
+        &nbsp;&nbsp;SELF.DEV
+      </a>
+      <a
+        href="https://github.com/selfdevs/accountability-dashboard"
+        id="github-watermark"
+        className="watermark"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <FontAwesomeIcon icon={faGithub} />
+        &nbsp;&nbsp;GitHub
+      </a>
+    </section>
   </NotificationProvider>
 );
 

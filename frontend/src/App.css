@@ -67,14 +67,25 @@ input[type="number"] {
     }
 }
 
-#github-watermark {
-    background-color: rgba(0,0,0,0.85);
-    border-radius: 3px;
-    padding: 3px 10px;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bolder;
+#watermarks {
     position: absolute;
     right: 2rem;
     bottom: 2rem;
+}
+
+.watermark {
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin: 0 5px;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: white;
+}
+
+#self-dev-watermark {
+    background-color: var(--primary);
+}
+
+#github-watermark {
+    background-color: rgba(0,0,0,0.85);
 }
