@@ -36,6 +36,7 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
         await queryClient.invalidateQueries('entries');
         if (editId) reset();
       })
+      // eslint-disable-next-line no-console
       .catch((e) => console.error(e));
   };
 

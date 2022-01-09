@@ -26,6 +26,7 @@ const TableRow: FC<TableRowProps> = ({
   const deleteEntry = () => {
     request(`/entry/${_id}`, 'DELETE')
       .then(() => queryClient.invalidateQueries('entries'))
+      // eslint-disable-next-line no-console
       .catch((e) => console.log(e));
   };
 
