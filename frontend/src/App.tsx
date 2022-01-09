@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
 import Auth from './contexts/Auth';
@@ -24,6 +26,15 @@ const App = () => (
         </Auth>
       </BrowserRouter>
     </QueryClientProvider>
+    <a
+      href="https://github.com/selfdevs/accountability-dashboard"
+      id="github-watermark"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FontAwesomeIcon icon={faGithub} />
+      &nbsp;GitHub
+    </a>
   </NotificationProvider>
 );
 

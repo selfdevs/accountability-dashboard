@@ -66,3 +66,14 @@ input[type="number"] {
         text-align: center;
     }
 }
+
+#github-watermark {
+    background-color: rgba(0,0,0,0.85);
+    border-radius: 3px;
+    padding: 3px 10px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    position: absolute;
+    right: 2rem;
+}
