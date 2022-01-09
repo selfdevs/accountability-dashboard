@@ -33,7 +33,7 @@ const App = () => (
       rel="noreferrer"
     >
       <FontAwesomeIcon icon={faGithub} />
-      &nbsp;GitHub
+      &nbsp;&nbsp;GitHub
     </a>
   </NotificationProvider>
 );
