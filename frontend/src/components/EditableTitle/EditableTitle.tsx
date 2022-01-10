@@ -5,7 +5,7 @@ import './styles.css';
 import _ from 'lodash';
 import { request } from '../../modules/http/client';
 
-const EditableTitle = ({ title }) => {
+const EditableTitle = ({ title, readonly }) => {
   const [editMode, setEditMode] = useState(false);
   const inputRef = useRef(null);
   const [newTitle, setNewTitle] = useState(null);
@@ -51,10 +51,12 @@ const EditableTitle = ({ title }) => {
       ) : (
         <h1>{newTitle}</h1>
       )}
-      <FontAwesomeIcon
-        icon={editMode ? faCheck : faPen}
-        onClick={editMode ? handleSubmit : edit}
-      />
+      {!readonly && (
+        <FontAwesomeIcon
+          icon={editMode ? faCheck : faPen}
+          onClick={editMode ? handleSubmit : edit}
+        />
+      )}
     </form>
   );
 };

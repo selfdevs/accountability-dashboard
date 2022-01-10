@@ -9,9 +9,10 @@ import Entry from '../../entities/Entry';
 type TableProps = {
   className?: string;
   data: Entry[];
+  readonly?: boolean;
 };
 
-const Table: FC<TableProps> = ({ data, className }) => {
+const Table: FC<TableProps> = ({ data, className, readonly }) => {
   const [editId, setEditId] = useState<string>(undefined);
   const { tbodyRef } = useScrollToCurrentDay(data.length > 0);
 
@@ -22,15 +23,22 @@ const Table: FC<TableProps> = ({ data, className }) => {
         style={{ position: 'relative', flex: '1' }}
       >
         <table className="data-table">
-          <TableHeader />
+          <TableHeader readonly={readonly} />
           <tbody ref={tbodyRef}>
             {data.map((entry) => (
-              <TableRow {...entry} key={entry.date} setEditId={setEditId} />
+              <TableRow
+                {...entry}
+                key={entry.date}
+                setEditId={setEditId}
+                readonly={readonly}
+              />
             ))}
           </tbody>
         </table>
       </div>
-      <EntryEditor entries={data} editId={editId} setEditId={setEditId} />
+      {!readonly && (
+        <EntryEditor entries={data} editId={editId} setEditId={setEditId} />
+      )}
     </div>
   );
 };

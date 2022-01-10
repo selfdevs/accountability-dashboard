@@ -4,6 +4,7 @@ import { request } from '../modules/http/client';
 import { saveToStorage } from '../modules/storage/io';
 import LoginButton from '../components/LoginButton/LoginButton';
 import { useNotify } from '../contexts/Notification';
+import { useRefresh, useUser } from '../contexts/Auth';
 
 const LOGIN_URL = `https://discord.com/api/oauth2/authorize?client_id=927637722628259842&redirect_uri=${encodeURIComponent(
   process.env.REACT_APP_REDIRECT_URI
@@ -13,6 +14,14 @@ const Homepage = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const notify = useNotify();
+  const refresh = useRefresh();
+  const user = useUser();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/me');
+    }
+  }, [user]);
 
   useEffect(() => {
     const code = params.get('code');
@@ -20,7 +29,7 @@ const Homepage = () => {
       request('/auth/discord', 'POST', { code })
         .then(({ token }: { token: string }) => {
           saveToStorage('accessToken', token);
-          navigate('/me');
+          refresh();
         })
         .catch((e) => {
           notify(e.message);

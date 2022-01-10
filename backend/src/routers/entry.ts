@@ -4,16 +4,29 @@ import { ApplicationContext } from '../index';
 import { DefaultState } from 'koa';
 import Entry from '../domains/entry/model';
 import newrelic from 'newrelic';
-import _, { pick } from 'lodash';
+import _ from 'lodash';
 import { errorResponse, successResponse } from '../services/httpService';
+import User from '../domains/user/model';
 
 const entryRouter = new Router<DefaultState, ApplicationContext>();
+
+entryRouter.get('/user/:username', async (ctx, next) => {
+  try {
+    const { username } = ctx.params;
+    const user = await User.findOne({ username });
+    if (!user) return errorResponse(ctx, 'User not found', 404);
+    ctx.body = await Entry.find({ user: user._id }).sort('date');
+  } catch (e) {
+    newrelic.noticeError(e);
+    console.error(e.message);
+    errorResponse(ctx, 'Fail to get entries');
+  }
+});
 
 entryRouter.use(authMiddleware);
 entryRouter.get('/', async (ctx, next) => {
   try {
-    const entries = await Entry.find({ user: ctx.user._id }).sort('date');
-    ctx.body = entries;
+    ctx.body = await Entry.find({ user: ctx.user._id }).sort('date');
   } catch (e) {
     newrelic.noticeError(e);
     console.error(e.message);

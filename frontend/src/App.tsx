@@ -22,6 +22,7 @@ const App = () => (
           </p>
           <Routes>
             <Route path="/me" element={<Dashboard />} />
+            <Route path="/:username" element={<Dashboard readonly />} />
             <Route index element={<Homepage />} />
           </Routes>
         </Auth>

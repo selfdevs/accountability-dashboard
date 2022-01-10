@@ -5,14 +5,13 @@ import {
   faInstagram,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-import React, { useCallback, useContext } from 'react';
+import React, { FC } from 'react';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
 import Card from '../Card';
 import './styles.css';
-import { AuthContext } from '../../contexts/Auth';
 import { User } from '../../entities/User';
 import { generateAvatarUrl } from '../../modules/discord/avatars';
+import { useLogout } from '../../contexts/Auth';
 
 const SocialButton = ({ icon, network, link }) => (
   <button
@@ -25,14 +24,13 @@ const SocialButton = ({ icon, network, link }) => (
   </button>
 );
 
-const Social = () => {
-  const user: User = useContext(AuthContext);
-  const navigate = useNavigate();
+type SocialProps = {
+  readonly?: boolean;
+  user: User;
+};
 
-  const logout = useCallback(() => {
-    localStorage.clear();
-    navigate('/');
-  }, [navigate]);
+const Social: FC<SocialProps> = ({ readonly, user }) => {
+  const logout = useLogout();
 
   if (!user) return null;
 
@@ -47,11 +45,14 @@ const Social = () => {
         className="social-image"
       />
       <div style={{ color: 'gray' }}>
+        {readonly && <span className="social-visiting">Visiting</span>}
         <h2 className="social-username">{user.username}</h2>
-        <button type="button" onClick={logout} id="logout-button">
-          Logout&nbsp;&nbsp;
-          <FontAwesomeIcon icon={faSignOutAlt} />
-        </button>
+        {!readonly && (
+          <button type="button" onClick={() => logout()} id="logout-button">
+            Logout&nbsp;&nbsp;
+            <FontAwesomeIcon icon={faSignOutAlt} />
+          </button>
+        )}
         {github && (
           <SocialButton icon={faGithub} network="github" link={github} />
         )}
