@@ -7,6 +7,10 @@ import newrelic from 'newrelic';
 import _ from 'lodash';
 import { errorResponse, successResponse } from '../services/httpService';
 import User from '../domains/user/model';
+import {
+  generateMissingEntries,
+  getCurrentMonthEntries,
+} from '../services/entryService';
 
 const entryRouter = new Router<DefaultState, ApplicationContext>();
 
@@ -15,7 +19,7 @@ entryRouter.get('/user/:username', async (ctx, next) => {
     const { username } = ctx.params;
     const user = await User.findOne({ username });
     if (!user) return errorResponse(ctx, 'User not found', 404);
-    ctx.body = await Entry.find({ user: user._id }).sort('date');
+    ctx.body = await getCurrentMonthEntries(user._id);
   } catch (e) {
     newrelic.noticeError(e);
     console.error(e.message);
@@ -26,7 +30,7 @@ entryRouter.get('/user/:username', async (ctx, next) => {
 entryRouter.use(authMiddleware);
 entryRouter.get('/', async (ctx, next) => {
   try {
-    ctx.body = await Entry.find({ user: ctx.user._id }).sort('date');
+    ctx.body = await getCurrentMonthEntries(ctx.user._id);
   } catch (e) {
     newrelic.noticeError(e);
     console.error(e.message);
@@ -48,6 +52,17 @@ entryRouter.post('/', async (ctx, next) => {
     await entry.save();
     ctx.body = entry;
     ctx.response.status = 200;
+  } catch (e) {
+    newrelic.noticeError(e);
+    console.error(e.message);
+    errorResponse(ctx, e.message);
+  }
+});
+
+entryRouter.post('/month', async (ctx, next) => {
+  try {
+    await generateMissingEntries(ctx.user._id);
+    successResponse(ctx, 'OK');
   } catch (e) {
     newrelic.noticeError(e);
     console.error(e.message);
