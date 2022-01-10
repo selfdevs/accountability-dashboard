@@ -12,6 +12,7 @@ import Card from '../Card';
 import './styles.css';
 import { AuthContext } from '../../contexts/Auth';
 import { User } from '../../entities/User';
+import { generateAvatarUrl } from '../../modules/discord/avatars';
 
 const SocialButton = ({ icon, network, link }) => (
   <button
@@ -41,7 +42,7 @@ const Social = () => {
   return (
     <Card className="social-card flex-row">
       <img
-        src={`${process.env.REACT_APP_DISCORD_CDN}/avatars/${discordId}/${discordAvatar}.png`}
+        src={generateAvatarUrl(discordId, discordAvatar)}
         alt="Profile"
         className="social-image"
       />
