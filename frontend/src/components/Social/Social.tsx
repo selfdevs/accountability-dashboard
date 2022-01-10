@@ -11,9 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../Card';
 import './styles.css';
 import { AuthContext } from '../../contexts/Auth';
-
-const profilePicUrl =
-  'https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-15.jpg';
+import { User } from '../../entities/User';
 
 const SocialButton = ({ icon, network, link }) => (
   <button
@@ -27,7 +25,7 @@ const SocialButton = ({ icon, network, link }) => (
 );
 
 const Social = () => {
-  const user = useContext(AuthContext);
+  const user: User = useContext(AuthContext);
   const navigate = useNavigate();
 
   const logout = useCallback(() => {
@@ -37,11 +35,16 @@ const Social = () => {
 
   if (!user) return null;
 
-  const { instagram, github, discord, youtube } = user;
+  const { instagram, github, discord, youtube, discordId, discordAvatar } =
+    user;
 
   return (
     <Card className="social-card flex-row">
-      <img src={profilePicUrl} alt="Profile" className="social-image" />
+      <img
+        src={`${process.env.REACT_APP_DISCORD_CDN}/avatars/${discordId}/${discordAvatar}.png`}
+        alt="Profile"
+        className="social-image"
+      />
       <div style={{ color: 'gray' }}>
         <h2 className="social-username">{user.username}</h2>
         <button type="button" onClick={logout} id="logout-button">

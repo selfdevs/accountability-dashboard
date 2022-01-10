@@ -17,6 +17,13 @@ type TokenResponse = {
   token_type: string;
 };
 
+type DiscordUser = {
+  id: string;
+  username: string;
+  avatar: string;
+  email: string;
+};
+
 export const exchangeTokenWithAuthToken = async (
   code: string
 ): Promise<TokenResponse> => {
@@ -37,9 +44,7 @@ export const exchangeTokenWithAuthToken = async (
   return data;
 };
 
-type GenerateAndStoreDiscordCredentials = {
-  email: string;
-  username: string;
+type GenerateAndStoreDiscordCredentials = DiscordUser & {
   discordCredentialsEntity: HydratedDocument<DiscordCredentialsInterface>;
 };
 
@@ -62,8 +67,7 @@ export const generateAndStoreDiscordCredentials = async (
     throw new Error('User not whitelisted');
   }
   return {
-    email: discordUser.email,
-    username: discordUser.username,
+    ...discordUser,
     discordCredentialsEntity,
   };
 };
@@ -82,6 +86,8 @@ const discordRequest = async (
   return response.json();
 };
 
-export const getCurrentUser = async (accessToken: string) => {
+export const getCurrentUser = async (
+  accessToken: string
+): Promise<DiscordUser> => {
   return discordRequest(accessToken, '/users/@me');
 };
