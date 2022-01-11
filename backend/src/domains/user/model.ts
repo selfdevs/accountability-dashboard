@@ -8,9 +8,10 @@ export interface UserInterface {
   email: string;
   username: string;
   discordCredentials: ObjectId;
-  picture?: string;
   dashboardTitle: string;
   instagram?: string;
+  discordId: string;
+  discordAvatar: string;
 }
 
 export const userSchema = new Schema<UserInterface>({
@@ -21,7 +22,8 @@ export const userSchema = new Schema<UserInterface>({
     ref: DISCORD_CREDENTIALS_MODEL_NAME,
     required: true,
   },
-  picture: { type: String },
+  discordAvatar: { type: String, required: true },
+  discordId: { type: String, required: true },
   dashboardTitle: { type: String, default: 'My dashboard', required: true },
   instagram: { type: String },
 });
