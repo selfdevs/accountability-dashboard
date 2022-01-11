@@ -25,14 +25,15 @@ type DiscordUser = {
 };
 
 export const exchangeTokenWithAuthToken = async (
-  code: string
+  code: string,
+  origin: string
 ): Promise<TokenResponse> => {
   const payload = {
     client_id: process.env.CLIENT_ID,
     client_secret: process.env.CLIENT_SECRET,
     grant_type: 'authorization_code',
     code,
-    redirect_uri: process.env.REDIRECT_URI,
+    redirect_uri: `${origin}/`,
   };
   const response = await fetch(process.env.DISCORD_API + '/oauth2/token', {
     method: 'POST',
@@ -49,9 +50,10 @@ type GenerateAndStoreDiscordCredentials = DiscordUser & {
 };
 
 export const generateAndStoreDiscordCredentials = async (
-  code: string
+  code: string,
+  origin: string
 ): Promise<GenerateAndStoreDiscordCredentials> => {
-  const discordData = await exchangeTokenWithAuthToken(code);
+  const discordData = await exchangeTokenWithAuthToken(code, origin);
   const discordUser = await getCurrentUser(discordData.access_token);
   const discordCredentialsEntity = new DiscordCredentials({
     accessToken: discordData.access_token,
