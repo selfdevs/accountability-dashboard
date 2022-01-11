@@ -7,7 +7,8 @@ on:
     branches: [ develop ]
 
 jobs:
-  lint:
+  "code-styling":
+    name: "ESLint & Prettier checks"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,6 +30,8 @@ jobs:
         name: Install dependencies
       - run: yarn lint
         name: Run lint
+      - run: yarn prettier
+        name: Run prettier
 
   test:
     runs-on: ubuntu-latest
