@@ -71,7 +71,7 @@ td:nth-child(3) {
 }
 
 .action-submit {
-    color: var(--confirm);
+  color: var(--confirm);
 }
 
 .action-edit:hover {

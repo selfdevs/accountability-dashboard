@@ -26,11 +26,7 @@ const Table: FC<TableProps> = ({ data, className, readonly }) => {
           <TableHeader readonly={readonly} />
           <tbody ref={tbodyRef}>
             {data.map((entry) => (
-              <TableRow
-                {...entry}
-                key={entry.date}
-                readonly={readonly}
-              />
+              <TableRow {...entry} key={entry.date} readonly={readonly} />
             ))}
           </tbody>
         </table>
