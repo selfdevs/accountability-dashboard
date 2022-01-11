@@ -1,15 +1,19 @@
 import {
   ChangeEventHandler,
-  useCallback, useEffect, useMemo, useRef, useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
 import { getFromStorage, saveToStorage } from '../../modules/storage/io';
 import { SAVING_DELAY, SCRATCHPAD_STORAGE_KEY } from './constants';
 import { getStateText } from './utils';
 
 type ScratchPadHook = {
-  loadingText: string
-  onChangeHandler: ChangeEventHandler
-  value: string
+  loadingText: string;
+  onChangeHandler: ChangeEventHandler;
+  value: string;
 };
 
 export const useScratchPad = (defaultText: string): ScratchPadHook => {

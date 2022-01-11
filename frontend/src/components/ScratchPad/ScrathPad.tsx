@@ -4,7 +4,7 @@ import './stylesheet.css';
 import { useScratchPad } from './hooks';
 
 type ScratchPadProps = {
-  defaultText: string
+  defaultText: string;
 };
 
 const ScratchPad: FC<ScratchPadProps> = ({ defaultText }) => {
@@ -14,7 +14,12 @@ const ScratchPad: FC<ScratchPadProps> = ({ defaultText }) => {
     <Card className="flex-column scratch-card">
       <h2 className="scratch-title">Scratchpad</h2>
       <p className="scratch-loading">{loadingText}</p>
-      <textarea className="scratch-area" value={value} data-testid="scratch-pad" onChange={onChangeHandler} />
+      <textarea
+        className="scratch-area"
+        value={value}
+        data-testid="scratch-pad"
+        onChange={onChangeHandler}
+      />
     </Card>
   );
 };

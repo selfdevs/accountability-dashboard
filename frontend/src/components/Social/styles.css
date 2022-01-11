@@ -1,62 +1,62 @@
 .social-card {
-    position: fixed;
-    right: 2rem;
-    top: 2rem;
-    width: 200px;
-    height: 50px;
-    background-color: white;
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  width: 200px;
+  height: 50px;
+  background-color: white;
 }
 
 #logout-button {
-    background: none;
-    color: var(--alert);
-    border: none;
-    font-weight: bolder;
-    cursor: pointer;
+  background: none;
+  color: var(--alert);
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .social-image {
-    margin-right: 1rem;
-    border-radius: 50%;
+  margin-right: 1rem;
+  border-radius: 50%;
 }
 
 .social-visiting {
-    font-size: small;
+  font-size: small;
 }
 
 .social-username {
-    margin: 0 0 0 5px;
-    color: black;
-    font-size: 1.2rem;
+  margin: 0 0 0 5px;
+  color: black;
+  font-size: 1.2rem;
 }
 
 .social-icon-button {
-    background: none;
-    margin: 0;
-    padding: 0;
-    border: none;
-    color: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 100ms ease-in-out;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 100ms ease-in-out;
 }
 
-.social-icon-button[data-network="discord"]:hover {
-    color: #5865F2;
+.social-icon-button[data-network='discord']:hover {
+  color: #5865f2;
 }
-.social-icon-button[data-network="github"]:hover {
-    color: black;
+.social-icon-button[data-network='github']:hover {
+  color: black;
 }
-.social-icon-button[data-network="instagram"]:hover {
-    color: #833AB4;
+.social-icon-button[data-network='instagram']:hover {
+  color: #833ab4;
 }
-.social-icon-button[data-network="youtube"]:hover {
-    color: #FF0000;
+.social-icon-button[data-network='youtube']:hover {
+  color: #ff0000;
 }
-.social-icon-button[data-network="linkedin"]:hover {
-    color: #0077B5;
+.social-icon-button[data-network='linkedin']:hover {
+  color: #0077b5;
 }
 
 .social-icon {
-    margin: 5px;
+  margin: 5px;
 }
