@@ -29,7 +29,6 @@ const Table: FC<TableProps> = ({ data, className, readonly }) => {
               <TableRow
                 {...entry}
                 key={entry.date}
-                setEditId={setEditId}
                 readonly={readonly}
               />
             ))}
