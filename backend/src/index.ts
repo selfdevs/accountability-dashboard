@@ -12,6 +12,7 @@ import './services/databaseService';
 import { UserInterface } from './domains/user/model';
 import entryRouter from './routers/entry';
 import { errorResponse } from './services/httpService';
+import webhookRouter from './routers/webhook';
 
 export interface ApplicationContext {
   user: UserInterface;
@@ -26,6 +27,7 @@ app.use(koaBody());
 apiRouter.use('/auth', authRouter.routes());
 apiRouter.use('/user', userRouter.routes());
 apiRouter.use('/entry', entryRouter.routes());
+apiRouter.use('/webhook', webhookRouter.routes());
 app.use(apiRouter.routes());
 app.use((ctx, next) => {
   if (!ctx.url.startsWith('/api')) {

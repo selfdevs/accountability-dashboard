@@ -3,7 +3,7 @@ import { USER_MODEL_NAME } from '../user/model';
 
 const ENTRY_MODEL_NAME = 'Entry';
 
-interface EntryInterface {
+export interface EntryInterface {
   date: Date;
   user: ObjectId;
   goal: number;
