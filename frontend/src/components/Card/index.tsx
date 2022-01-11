@@ -2,13 +2,11 @@ import React, { FC } from 'react';
 import './stylesheet.css';
 
 type CardProps = {
-  className?: string
+  className?: string;
 };
 
 const Card: FC<CardProps> = ({ children, className }) => (
-  <div className={`${className} card shadowed`}>
-    {children}
-  </div>
+  <div className={`${className} card shadowed`}>{children}</div>
 );
 
 export default Card;

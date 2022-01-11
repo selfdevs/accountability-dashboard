@@ -1,20 +1,20 @@
 .scratch-title {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: normal;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: normal;
 }
 
 .scratch-area {
-    border: none;
-    height: 100px;
-    width: calc(100% - 1rem);
-    margin-top: 20px;
-    font-size: 1.2rem;
+  border: none;
+  height: 100px;
+  width: calc(100% - 1rem);
+  margin-top: 20px;
+  font-size: 1.2rem;
 }
 
 .scratch-loading {
-    margin: 0;
-    font-size: 12px;
+  margin: 0;
+  font-size: 12px;
 }
 
 .scratch-area:focus {
