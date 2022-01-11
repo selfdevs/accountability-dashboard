@@ -20,6 +20,10 @@
     border-radius: 50%;
 }
 
+.social-visiting {
+    font-size: small;
+}
+
 .social-username {
     margin: 0 0 0 5px;
     color: black;

@@ -8,6 +8,7 @@ type Entry = {
   comment: string;
 };
 
-export const fetchEntries = async () => request('/entry');
+export const fetchEntries = (username: string) => () =>
+  request(`/entry/user/${username}`);
 
 export default Entry;

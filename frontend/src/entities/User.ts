@@ -1,3 +1,5 @@
+import { request } from '../modules/http/client';
+
 export type User = {
   username: string;
   dashboardTitle?: string;
@@ -8,3 +10,6 @@ export type User = {
   discordId: string;
   discordAvatar: string;
 };
+
+export const fetchUser = (username: string) => () =>
+  request(`/user/${username}`);

@@ -12,6 +12,7 @@ type TableRowProps = {
   done: number;
   comment: string;
   setEditId: Function;
+  readonly?: boolean;
 };
 
 const TableRow: FC<TableRowProps> = ({
@@ -21,6 +22,7 @@ const TableRow: FC<TableRowProps> = ({
   done,
   comment,
   setEditId,
+  readonly,
 }) => {
   const queryClient = useQueryClient();
   const deleteEntry = () => {
@@ -40,18 +42,20 @@ const TableRow: FC<TableRowProps> = ({
       <td>{goal}</td>
       <td>{done}</td>
       <td>{comment}</td>
-      <td>
-        <FontAwesomeIcon
-          icon={faPen}
-          onClick={editEntry}
-          className="action action-edit"
-        />
-        <FontAwesomeIcon
-          icon={faTrash}
-          onClick={deleteEntry}
-          className="action action-delete"
-        />
-      </td>
+      {!readonly && (
+        <td>
+          <FontAwesomeIcon
+            icon={faPen}
+            onClick={editEntry}
+            className="action action-edit"
+          />
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={deleteEntry}
+            className="action action-delete"
+          />
+        </td>
+      )}
     </tr>
   );
 };
