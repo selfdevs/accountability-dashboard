@@ -32,6 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier src -c",
     "security": "yarn-audit-ci"
   },
   "eslintConfig": {
