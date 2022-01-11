@@ -1,26 +1,45 @@
 import React from 'react';
 import {
-  Chart as RumbleChart, Labels, Layer, Lines, Ticks,
+  Chart as RumbleChart,
+  Labels,
+  Layer,
+  Lines,
+  Ticks,
 } from 'rumble-charts';
 import './styles.css';
 
 type ChartProps = {
-  entries: Array<any>
+  entries: Array<any>;
 };
 
 const Chart = ({ entries }: ChartProps) => {
-  const goalSeries = entries.map(({ goal }) => goal);
-  const doneSeries = entries.map(({ done }) => done);
-  const series = [{
-    data: goalSeries,
-  }, {
-    data: doneSeries,
-  }];
+  const goalSeries = entries.reduce((acc, { goal }, i) => {
+    if (!goal) return acc;
+    return [...acc, [i, goal]];
+  }, []);
+  const doneSeries = entries.reduce((acc, { done }, i) => {
+    if (!done) return acc;
+    return [...acc, [i, done]];
+  }, []);
+
+  const series = [
+    {
+      data: goalSeries,
+    },
+    {
+      data: doneSeries,
+    },
+  ];
+  if (entries.length === 0) return null;
 
   return (
-    <RumbleChart height={300} width={800} series={series} className="chart-container">
-
-      <Layer width="90%" height="60%" position="middle center">
+    <RumbleChart
+      height={300}
+      width={800}
+      series={series}
+      className="chart-container"
+    >
+      <Layer width="90%" height="80%" position="middle center">
         <Ticks
           axis="y"
           lineLength="100%"
@@ -33,8 +52,14 @@ const Chart = ({ entries }: ChartProps) => {
             fill: 'lightgray',
             textAnchor: 'end',
           }}
-          ticks={Array(Math.max(...[...series[0].data, ...series[1].data]) + 1).fill(0)
-            .map((value, index) => ({ y: index, label: index }))}
+        />
+        <Ticks
+          axis="x"
+          labelStyle={{
+            dominantBaseline: 'text-before-edge',
+            fill: 'lightgray',
+            textAnchor: 'end',
+          }}
         />
         <Lines />
         <Labels />

@@ -1,0 +1,9 @@
+services:
+  web:
+    container_name: ziro
+    build: .
+    ports:
+      - 8001:8001
+    environment:
+      - NEW_RELIC_LICENSE_KEY
+    hostname: ${HOSTNAME:-ziro-host}

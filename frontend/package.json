@@ -16,9 +16,11 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "faker": "^5.5.3",
+    "lodash": "^4.17.21",
     "luxon": "^2.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-query": "^3.34.7",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "rumble-charts": "^4.0.0",
@@ -51,15 +53,18 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.178",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.4.1",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1",
     "typescript": "^4.5.4",
     "yarn-audit-ci": "^1.2.0"
   }

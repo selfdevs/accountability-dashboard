@@ -1,0 +1,39 @@
+.editable-title-container {
+    display: flex;
+    align-items: center;
+    color: var(--lightgray);
+}
+
+.editable-title-container-edit {
+    color: var(--confirm);
+}
+
+
+.editable-title-container svg {
+    cursor: pointer;
+    opacity: 0;
+    margin-left: 1rem;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.editable-title-container-edit svg {
+    opacity: 1;
+}
+
+.editable-title-container:hover svg {
+    opacity: 1;
+}
+
+.editable-title-container h1 {
+    margin: 0;
+}
+
+.editable-title-container input {
+    border-width: 0;
+    padding: 0;
+    outline: solid 1px var(--lightgray);
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--primary);
+    margin: 0;
+}

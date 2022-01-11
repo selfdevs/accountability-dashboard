@@ -1,28 +1,24 @@
+.left-column-table {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .data-table {
-    margin: 1rem;
-    height: 70vh;
-    display: block;
-    overflow: auto;
-    position: relative;
-    border-collapse: separate;
-    border-spacing: 1rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-wrapper {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: calc(100% - 2rem);
+    height: 100%;
+    overflow: auto;
 }
 
 .data-table::-webkit-scrollbar {
     display: none;
-}
-
-.table-header-bg {
-    position: absolute;
-    height: 3rem;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    z-index: 1;
 }
 
 .data-table thead {
@@ -30,28 +26,26 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to bottom, white 90%, rgba(255,255,255,0));
+    background-color: white;
     padding-bottom: 1rem;
     z-index: 2;
+    box-shadow: 0 10px 10px white;
 }
 
-.data-table thead tr {
-    background-color: white;
-    border-collapse: collapse;
+.data-table thead th {
+    text-align: center;
 }
 
 .data-table th, td {
-    padding: 0.1rem 1rem;
     text-align: left;
+    padding: 1rem;
 }
 
 .data-table td {
     text-align: center;
-    padding: 0.5rem;
 }
 
 .data-table tbody tr {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     margin: 1rem;
 }
 
@@ -62,4 +56,18 @@
 
 .data-table tbody td:nth-child(4) {
     text-align: left;
+}
+
+.action {
+    color: var(--lightgray);
+    cursor: pointer;
+    margin: 5px;
+}
+
+.action-delete:hover {
+    color: var(--alert);
+}
+
+.action-edit:hover {
+    color: var(--secondary);
 }

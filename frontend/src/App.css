@@ -1,17 +1,23 @@
 
 h1 {
-    color: #4F93D0;
+    color: var(--primary);
     margin: 1rem;
 }
 
 .layout {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     overflow-x: hidden;
+    flex: 1;
+    padding-top: 2rem;
+}
+
+.layout > *:not(:first-child) {
+    margin-left: 1rem;
 }
 
 .shadowed {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 2px rgba(0,0,0,0.05);
 }
 
 .flex1 {
@@ -29,4 +35,63 @@ h1 {
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+input, textarea {
+    border: none;
+    padding: 0.5rem;
+    outline: solid 1px var(--lightgray);
+    resize: none;
+}
+
+input[type="number"] {
+    width: 5rem;
+}
+
+#mobile-disclaimer {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    #root {
+        height: 0;
+        overflow: hidden;
+    }
+
+    #mobile-disclaimer {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        background-color: white;
+        height: calc(100vh - 80vh);
+        width: calc(100vw - 6rem);
+        padding: 40vh 3rem;
+        z-index: 9999;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+#watermarks {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+.watermark {
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin: 0 5px;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: white;
+}
+
+#self-dev-watermark {
+    background-color: var(--primary);
+}
+
+#github-watermark {
+    background-color: rgba(0,0,0,0.85);
 }

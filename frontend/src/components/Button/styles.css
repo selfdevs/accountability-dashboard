@@ -1,0 +1,17 @@
+.button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    margin: 10px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.button-confirm {
+    background-color: var(--confirm);
+}
+
+.button-cancel {
+    background-color: var(--alert);
+}

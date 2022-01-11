@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import Table from '../components/Table/Table';
 import ScratchPad from '../components/ScratchPad/ScrathPad';
 import Social from '../components/Social/Social';
 import Chart from '../components/Chart/Chart';
+import { useUser } from '../contexts/Auth';
+import { fetchEntries } from '../entities/Entry';
+import EditableTitle from '../components/EditableTitle/EditableTitle';
 
 const Dashboard = () => {
-  const [fetchedData, setFetchedData] = useState<any>();
-
-  useEffect(() => {
-    fetch('https://raw.githubusercontent.com/selfdevs/accountability-dashboard/develop/backend/mockdata.json')
-      .then((response) => response.json()).then(setFetchedData);
-  }, []);
-
-  if (!fetchedData) return null;
+  const user = useUser();
+  const { data } = useQuery('entries', fetchEntries);
 
   return (
     <>
-      <h1>{fetchedData.chart.title}</h1>
-      <Social
-        name={fetchedData?.user?.name}
-        github={fetchedData?.user?.github}
-        linkedIn={fetchedData?.user?.linkedin}
-      />
+      <EditableTitle title={user?.dashboardTitle} />
+      <Social />
       <div className="layout">
-        <Table data={fetchedData} />
+        <Table data={data || []} />
         <div className="flex1">
-          <Chart entries={fetchedData.data} />
-          <ScratchPad defaultText={fetchedData?.scratch_board?.formatted_text} />
+          <Chart entries={data || []} />
+          <ScratchPad defaultText="Hello world" />
         </div>
       </div>
     </>

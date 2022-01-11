@@ -7,6 +7,7 @@ const TableHeader = () => (
       <th>Goal</th>
       <th>Done</th>
       <th>Comment</th>
+      <th>Actions</th>
     </tr>
   </thead>
 );
