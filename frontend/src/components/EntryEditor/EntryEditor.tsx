@@ -42,6 +42,15 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
       .catch((e) => notify(e.message));
   };
 
+  const generate = () => {
+    request('/entry/month', 'POST')
+      .then(async () => {
+        await queryClient.invalidateQueries('entries');
+        if (editId) reset();
+      })
+      .catch((e) => notify(e.message));
+  };
+
   useEffect(() => {
     if (editId) {
       dispatch({
@@ -111,6 +120,11 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
           <FontAwesomeIcon icon={faTimes} size="1x" />
           &nbsp;{editId ? 'Cancel' : 'Clear'}
         </Button>
+        {entries.length < DateTime.now().endOf('month').day && (
+          <Button type="button" onClick={generate}>
+            Generate missing days for the month
+          </Button>
+        )}
       </div>
     </form>
   );

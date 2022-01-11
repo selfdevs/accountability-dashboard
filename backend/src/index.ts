@@ -11,6 +11,7 @@ import './services/envService';
 import './services/databaseService';
 import { UserInterface } from './domains/user/model';
 import entryRouter from './routers/entry';
+import { errorResponse } from './services/httpService';
 
 export interface ApplicationContext {
   user: UserInterface;
@@ -27,7 +28,11 @@ apiRouter.use('/user', userRouter.routes());
 apiRouter.use('/entry', entryRouter.routes());
 app.use(apiRouter.routes());
 app.use((ctx, next) => {
-  if (!ctx.url.startsWith('/api')) return next();
+  if (!ctx.url.startsWith('/api')) {
+    return next();
+  } else {
+    errorResponse(ctx, 'API route not found', 404);
+  }
 });
 app.use(indexNewRelicScriptInjection);
 app.use(serve('../frontend/build'));

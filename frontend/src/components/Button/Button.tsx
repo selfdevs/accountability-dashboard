@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 import './styles.css';
 
-const Button = ({ children, className, ...props }) => (
+type ButtonProps = {
+  className?: string;
+};
+
+const Button: FC<ButtonProps & ButtonHTMLAttributes<any>> = ({
+  children,
+  className,
+  ...props
+}) => (
   // eslint-disable-next-line react/button-has-type
   <button className={`button shadowed ${className}`} {...props}>
     {children}
