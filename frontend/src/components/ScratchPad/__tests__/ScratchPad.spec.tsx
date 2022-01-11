@@ -15,7 +15,9 @@ describe('ScratchPad', () => {
   });
 
   it('should change state while typing', async () => {
-    const { getByTestId, getByText } = render(<ScratchPad defaultText={SAMPLE_TEXT} />);
+    const { getByTestId, getByText } = render(
+      <ScratchPad defaultText={SAMPLE_TEXT} />
+    );
     const textArea = getByTestId('scratch-pad');
     fireEvent.change(textArea, { target: { value: '' } });
     await expect(getByText(SAVING)).toBeDefined();
@@ -26,12 +28,16 @@ describe('ScratchPad', () => {
 
   it('should render with stored text', () => {
     (getFromStorage as jest.Mock).mockReturnValueOnce(SAMPLE_TEXT);
-    const { getByDisplayValue } = render(<ScratchPad defaultText="Wrong data" />);
+    const { getByDisplayValue } = render(
+      <ScratchPad defaultText="Wrong data" />
+    );
     expect(getByDisplayValue(SAMPLE_TEXT)).toBeDefined();
   });
 
   it('should render with default text', () => {
-    const { getByDisplayValue } = render(<ScratchPad defaultText={SAMPLE_TEXT} />);
+    const { getByDisplayValue } = render(
+      <ScratchPad defaultText={SAMPLE_TEXT} />
+    );
     expect(getByDisplayValue(SAMPLE_TEXT)).toBeDefined();
   });
 });
