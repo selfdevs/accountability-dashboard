@@ -1,0 +1,34 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  "code-styling":
+    name: "ESLint & Prettier checks"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+          cache-dependency-path: ./backend/yarn.lock
+      - run: yarn install
+        name: Install dependencies
+      - run: yarn lint
+        name: Run lint
+      - run: yarn prettier
+        name: Run prettier
