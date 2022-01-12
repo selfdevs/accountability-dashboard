@@ -37,7 +37,8 @@
     "prebuild": "yarn lint",
     "build": "tsc",
     "build:dev": "tsc -w",
-    "lint": "tslint -p tsconfig.json -c tslint.json --fix",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "prettier": "prettier src -c",
     "serve": "node dist",
     "serve:dev": "nodemon dist"
   }
