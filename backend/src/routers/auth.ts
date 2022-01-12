@@ -10,8 +10,9 @@ const authRouter = new Router();
 authRouter.post('/discord', async (ctx, next) => {
   try {
     const { code } = ctx.request.body;
+    const origin = ctx.get('Origin');
     const { email, username, discordCredentialsEntity, id, avatar } =
-      await generateAndStoreDiscordCredentials(code);
+      await generateAndStoreDiscordCredentials(code, origin);
     let user = await User.findOne({ email });
     if (!user) {
       user = new User({
