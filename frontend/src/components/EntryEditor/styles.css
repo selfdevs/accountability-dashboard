@@ -3,6 +3,7 @@
   position: sticky;
   bottom: 0;
   background-color: white;
+  text-align: center;
 }
 
 .entry-editor input[type='number'],

@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import './styles.css';
 import { DateTime } from 'luxon';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
@@ -51,7 +49,7 @@ const Table: FC<TableProps> = ({ data, className, readonly }) => {
         </table>
       </div>
       {!readonly && (
-        <>
+        <div className="entry-editor">
           <Button
             type="button"
             className="button-add"
@@ -62,11 +60,10 @@ const Table: FC<TableProps> = ({ data, className, readonly }) => {
               ]);
             }}
           >
-            <FontAwesomeIcon icon={faCheck} size="1x" />
             &nbsp;Add
           </Button>
           <EntryEditor />
-        </>
+        </div>
       )}
     </div>
   );

@@ -18,13 +18,9 @@ const EntryEditor: FC = () => {
   };
 
   return (
-    <form className="entry-editor">
-      <div style={{ textAlign: 'center' }}>
-        <Button type="button" onClick={generate}>
-          Generate missing days for the month
-        </Button>
-      </div>
-    </form>
+    <Button type="button" onClick={generate}>
+      Generate missing days for the month
+    </Button>
   );
 };
 
