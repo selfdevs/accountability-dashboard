@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./backend
 
     strategy:
       matrix:
@@ -50,7 +50,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          cache-dependency-path: ./frontend/yarn.lock
+          cache-dependency-path: ./backend/yarn.lock
       - run: yarn install
         name: Install dependencies
       - run: yarn test
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./backend
 
     strategy:
       matrix:
@@ -74,7 +74,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          cache-dependency-path: ./frontend/yarn.lock
+          cache-dependency-path: ./backend/yarn.lock
       - run: yarn install
         name: Install dependencies
       - run: yarn security
