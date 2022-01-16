@@ -10,10 +10,13 @@ with all features available. Go to your `.env` file, and check them out. You may
 `.gitignore` file, so it won't be committed.
 
 - `REACT_APP_REDIRECT_URI`: This is the URL that will be called after Discord authorizations prompt.
-This should be set to your served local front-end homepage. Most likely `http://localhost:3000/`. Don't
-forget the / at the end.
-- `REACT_APP_API_BASE_URL`: API base URL, leave `https://ziro.cchampou.me/api` if you want to use the
-preview API and start developing immediately.
+This should be set to your served local front-end homepage. Most likely `http://localhost:3000/`.
+
+_**Don't forget the / at the end. It is the path to the homepage, in charge of handling the callback.**_
+- `REACT_APP_API_BASE_URL`: API base URL, pick one option:
+  - Use `https://ziro.cchampou.me/api` if you want to use the preview API and start developing immediately.
+  - Replace by your API development server base url if you are also working on the backend,
+  like `http://127.0.0.1:8001/api`.
 - `REACT_APP_DISCORD_CDN`: Based on the official documentation, keep `https://cdn.discordapp.com`.
 
 ## How to run the project locally
