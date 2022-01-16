@@ -34,6 +34,7 @@ jobs:
         name: Run prettier
 
   test:
+    name: "Unit tests"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -57,6 +58,7 @@ jobs:
         name: Run tests
 
   security:
+    name: "Security audit"
     runs-on: ubuntu-latest
     defaults:
       run:
