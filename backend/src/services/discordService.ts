@@ -8,6 +8,12 @@ import DiscordCredentials, {
   DiscordCredentialsInterface,
 } from '../domains/discordCredentials/model';
 import { Error, HydratedDocument } from 'mongoose';
+import Entry from '../domains/entry/model';
+import nacl from 'tweetnacl';
+import _ from 'lodash';
+import User from '../domains/user/model';
+import { toReadableEntry } from './entryService';
+import { DateTime } from 'luxon';
 
 type TokenResponse = {
   access_token: string;
@@ -94,4 +100,45 @@ export const getCurrentUser = async (
   accessToken: string
 ): Promise<DiscordUser> => {
   return discordRequest(accessToken, '/users/@me');
+};
+
+export const verifySignature = (
+  signature: string,
+  timestamp: string,
+  body: string
+) => {
+  const isVerified = nacl.sign.detached.verify(
+    Buffer.from(timestamp + body),
+    Buffer.from(signature, 'hex'),
+    Buffer.from(process.env.DISCORD_APP_PUBLIC_KEY, 'hex')
+  );
+  if (!isVerified) throw new Error('Signature verification failed');
+};
+
+export const handleInteraction = async (interaction: any) => {
+  const interactionType = _.get(interaction, 'type', null);
+  const fieldToUpdate = _.get(
+    interaction,
+    'data.options[0].options[0].options[0].name',
+    null
+  );
+  const userInput = _.get(
+    interaction,
+    'data.options[0].options[0].options[0].value',
+    null
+  );
+  if (interactionType === 1) return { type: 1 };
+  if (interactionType !== 2) throw new Error('Unknown interaction');
+  const userId = _.get(interaction, 'member.user.id', null);
+  const user = await User.findOne({ discordId: userId });
+  if (!user) return { type: 4, data: { content: "We don't know you yet" } };
+  const today = await Entry.findOne({
+    user: user._id,
+    date: DateTime.now().toISODate(),
+  });
+  if (fieldToUpdate === 'goal' && userInput) today.goal = userInput;
+  if (fieldToUpdate === 'done' && userInput) today.done = userInput;
+  if (fieldToUpdate === 'comment' && userInput) today.comment = userInput;
+  await today.save();
+  return { type: 4, data: { content: toReadableEntry(today) } };
 };
