@@ -3,7 +3,7 @@ import { faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DateTime } from 'luxon';
 
-import { useTableRow } from './hooks';
+import {INPUT_CHANGE, SWITCH_EDIT_MODE, useTableRow} from './hooks';
 
 type TableRowProps = {
   _id: string;
@@ -43,7 +43,7 @@ const TableRow: FC<TableRowProps> = ({
               value={goal || ''}
               onChange={(e) => {
                 dispatch({
-                  type: 'inputChange',
+                  type: INPUT_CHANGE,
                   name: 'goal',
                   value: e.target.value,
                 });
@@ -58,7 +58,7 @@ const TableRow: FC<TableRowProps> = ({
               value={done || ''}
               onChange={(e) => {
                 dispatch({
-                  type: 'inputChange',
+                  type: INPUT_CHANGE,
                   name: 'done',
                   value: e.target.value,
                 });
@@ -73,7 +73,7 @@ const TableRow: FC<TableRowProps> = ({
               value={comment || ''}
               onChange={(e) => {
                 dispatch({
-                  type: 'inputChange',
+                  type: INPUT_CHANGE,
                   name: 'comment',
                   value: e.target.value,
                 });
@@ -97,7 +97,7 @@ const TableRow: FC<TableRowProps> = ({
               if (editMode) {
                 handleEdit();
               }
-              dispatch({ type: 'switchEditMode' });
+              dispatch({ type: SWITCH_EDIT_MODE });
             }}
             className={`action  ${editMode ? 'action-submit' : 'action-edit'}`}
           />

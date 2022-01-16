@@ -21,14 +21,18 @@ export const useScrollToCurrentDay = (enable: boolean) => {
   };
 };
 
+
+export const INPUT_CHANGE = 'inputChange';
+export const SWITCH_EDIT_MODE = 'switchEditMode';
+
 const tableReducer = (state, action) => {
   switch (action.type) {
-    case 'inputChange':
+    case INPUT_CHANGE:
       return {
         ...state,
         [action.name]: action.value,
       };
-    case 'switchEditMode':
+    case SWITCH_EDIT_MODE:
       return {
         ...state,
         editMode: !state.editMode,
@@ -38,7 +42,7 @@ const tableReducer = (state, action) => {
   }
 };
 
-export const useTableRow = (_id, initialGoal, initialDone, initialComment) => {
+export const useTableRow = (entryId , initialGoal, initialDone, initialComment) => {
   const queryClient = useQueryClient();
 
   const [state, dispatch] = useReducer(tableReducer, {
@@ -50,14 +54,14 @@ export const useTableRow = (_id, initialGoal, initialDone, initialComment) => {
   const notify = useNotify();
 
   const deleteEntry = () => {
-    request(`/entry/${_id}`, 'DELETE')
+    request(`/entry/${entryId}`, 'DELETE')
       .then(() => queryClient.invalidateQueries('entries'))
       // eslint-disable-next-line no-console
       .catch((e) => console.log(e));
   };
 
   const handleEdit = () => {
-    const pathName = `/entry/${_id}`;
+    const pathName = `/entry/${entryId}`;
     request(pathName, 'PATCH', {
       goal: state.goal,
       done: state.done,
