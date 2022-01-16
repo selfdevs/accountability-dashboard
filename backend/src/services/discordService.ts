@@ -117,12 +117,12 @@ export const verifySignature = (
 
 export const handleInteraction = async (interaction: any) => {
   const interactionType = _.get(interaction, 'type', null);
-  const dataName = _.get(
+  const fieldToUpdate = _.get(
     interaction,
     'data.options[0].options[0].options[0].name',
     null
   );
-  const dataValue = _.get(
+  const userInput = _.get(
     interaction,
     'data.options[0].options[0].options[0].value',
     null
@@ -136,9 +136,9 @@ export const handleInteraction = async (interaction: any) => {
     user: user._id,
     date: DateTime.now().toISODate(),
   });
-  if (dataName === 'goal' && dataValue) today.goal = dataValue;
-  if (dataName === 'done' && dataValue) today.done = dataValue;
-  if (dataName === 'comment' && dataValue) today.comment = dataValue;
+  if (fieldToUpdate === 'goal' && userInput) today.goal = userInput;
+  if (fieldToUpdate === 'done' && userInput) today.done = userInput;
+  if (fieldToUpdate === 'comment' && userInput) today.comment = userInput;
   await today.save();
   return { type: 4, data: { content: toReadableEntry(today) } };
 };
