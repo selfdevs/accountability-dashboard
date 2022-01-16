@@ -9,6 +9,7 @@ export type User = {
   discord?: string;
   discordId: string;
   discordAvatar: string;
+  scratchpad?: string;
 };
 
 export const fetchUser = (username: string) => () =>
