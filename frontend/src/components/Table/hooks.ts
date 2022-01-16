@@ -21,7 +21,6 @@ export const useScrollToCurrentDay = (enable: boolean) => {
   };
 };
 
-
 export const INPUT_CHANGE = 'inputChange';
 export const SWITCH_EDIT_MODE = 'switchEditMode';
 
@@ -42,7 +41,12 @@ const tableReducer = (state, action) => {
   }
 };
 
-export const useTableRow = (entryId , initialGoal, initialDone, initialComment) => {
+export const useTableRow = (
+  entryId,
+  initialGoal,
+  initialDone,
+  initialComment
+) => {
   const queryClient = useQueryClient();
 
   const [state, dispatch] = useReducer(tableReducer, {

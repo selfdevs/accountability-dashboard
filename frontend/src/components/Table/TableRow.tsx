@@ -3,7 +3,7 @@ import { faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DateTime } from 'luxon';
 
-import {INPUT_CHANGE, SWITCH_EDIT_MODE, useTableRow} from './hooks';
+import { INPUT_CHANGE, SWITCH_EDIT_MODE, useTableRow } from './hooks';
 
 type TableRowProps = {
   _id: string;
