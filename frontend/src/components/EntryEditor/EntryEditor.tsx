@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useReducer } from 'react';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQueryClient } from 'react-query';
 import { DateTime } from 'luxon';
@@ -26,22 +26,6 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
     dispatch({ type: Actions.RESET });
   }, [setEditId]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const pathName = editId ? `/entry/${editId}` : '/entry';
-    request(pathName, editId ? 'PATCH' : 'POST', {
-      date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
-      goal: state.goal,
-      done: state.done,
-      comment: state.comment,
-    })
-      .then(async () => {
-        await queryClient.invalidateQueries('entries');
-        if (editId) reset();
-      })
-      .catch((e) => notify(e.message));
-  };
-
   const generate = () => {
     request('/entry/month', 'POST')
       .then(async () => {
@@ -50,6 +34,29 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
       })
       .catch((e) => notify(e.message));
   };
+/*
+  const handleAdd = (event) => {
+    event.preventDefault();
+    const pathName = '/entry';
+    request(pathName, 'POST', {
+      date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
+    })
+        .then(async () => {
+          await queryClient.invalidateQueries('entries');
+          if (editId) reset();
+        })
+        .catch((e) => notify(e.message));
+  }
+*/
+
+
+  const handleAdd = (event) => {
+    event.preventDefault();
+  }
+
+
+
+
 
   useEffect(() => {
     if (editId) {
@@ -61,70 +68,25 @@ const EntryEditor: FC<EntryEditorProps> = ({ editId, entries, setEditId }) => {
   }, [editId, entries]);
 
   return (
-    <form onSubmit={handleSubmit} className="entry-editor">
-      <input
-        type="number"
-        placeholder="Day"
-        onChange={(e) =>
-          dispatch({
-            type: Actions.EDIT_DAY,
-            payload: e.target.value,
-          })
-        }
-        step={1}
-        min={1}
-        max={31}
-        value={state.day || ''}
-        disabled={state.edit}
-      />
-      <input
-        type="number"
-        placeholder="Goal"
-        value={state.goal || ''}
-        onChange={(e) =>
-          dispatch({
-            type: Actions.EDIT_GOAL,
-            payload: e.target.value,
-          })
-        }
-        min={0}
-      />
-      <input
-        type="number"
-        placeholder="Done"
-        value={state.done || ''}
-        onChange={(e) =>
-          dispatch({
-            type: Actions.EDIT_DONE,
-            payload: e.target.value,
-          })
-        }
-        min={0}
-      />
-      <textarea
-        value={state.comment || ''}
-        onChange={(e) =>
-          dispatch({
-            type: Actions.EDIT_COMMENT,
-            payload: e.target.value,
-          })
-        }
-        placeholder="Comment"
-      />
+
+
+    <form className="entry-editor">
+
+
+
       <div style={{ textAlign: 'center' }}>
-        <Button className="button-confirm" type="submit">
+
+        <Button type="button" className="button-add"  onClick={handleAdd}>
           <FontAwesomeIcon icon={faCheck} size="1x" />
-          &nbsp;Save
+          &nbsp;Add
         </Button>
-        <Button className="button-cancel" type="button" onClick={reset}>
-          <FontAwesomeIcon icon={faTimes} size="1x" />
-          &nbsp;{editId ? 'Cancel' : 'Clear'}
-        </Button>
+
         {entries.length < DateTime.now().endOf('month').day && (
           <Button type="button" onClick={generate}>
             Generate missing days for the month
           </Button>
         )}
+
       </div>
     </form>
   );

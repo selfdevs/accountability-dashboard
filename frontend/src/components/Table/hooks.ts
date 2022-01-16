@@ -43,14 +43,16 @@ const tableReducer = (state, action) => {
 
 export const useTableRow = (
   entryId,
+  initialDateISOString,
   initialGoal,
   initialDone,
-  initialComment
+  initialComment,
+  initialEditMode,
 ) => {
   const queryClient = useQueryClient();
-
   const [state, dispatch] = useReducer(tableReducer, {
-    editMode: false,
+    editMode: initialEditMode,
+    day: DateTime.fromISO(initialDateISOString).day,
     goal: initialGoal,
     done: initialDone,
     comment: initialComment,
@@ -64,18 +66,21 @@ export const useTableRow = (
       .catch((e) => console.log(e));
   };
 
-  const handleEdit = () => {
-    const pathName = `/entry/${entryId}`;
-    request(pathName, 'PATCH', {
+  const handleSubmit = () => {
+    const pathName = entryId ? `/entry/${entryId}` : '/entry';
+    request(pathName, entryId ? 'PATCH' : 'POST', {
+      date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
       goal: state.goal,
       done: state.done,
       comment: state.comment,
     })
-      .then(async () => {
-        await queryClient.invalidateQueries('entries');
-      })
-      .catch((e) => notify(e.message));
+        .then(async () => {
+          await queryClient.invalidateQueries('entries');
+        })
+        .catch((e) => notify(e.message));
   };
 
-  return { state, dispatch, deleteEntry, handleEdit };
+
+
+  return { state, dispatch, deleteEntry, handleSubmit };
 };

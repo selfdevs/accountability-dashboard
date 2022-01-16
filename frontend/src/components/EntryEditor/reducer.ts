@@ -23,7 +23,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         edit: true,
-        day: DateTime.fromISO(action.payload.date).day,
+        day: action.payload.date,
         goal: action.payload.goal,
         done: action.payload.done,
         comment: action.payload.comment,

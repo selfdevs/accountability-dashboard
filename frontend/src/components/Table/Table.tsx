@@ -3,6 +3,7 @@ import './styles.css';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
+// eslint-disable-next-line import/no-cycle
 import EntryEditor from '../EntryEditor/EntryEditor';
 import Entry from '../../entities/Entry';
 
@@ -28,6 +29,7 @@ const Table: FC<TableProps> = ({ data, className, readonly }) => {
             {data.map((entry) => (
               <TableRow {...entry} key={entry.date} readonly={readonly} />
             ))}
+            <TableRow  key="addingLine" readonly={readonly}  _id="addingLine" comment="" date="" editMode/>
           </tbody>
         </table>
       </div>
