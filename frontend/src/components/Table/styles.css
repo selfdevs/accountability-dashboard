@@ -70,6 +70,10 @@ td:nth-child(3) {
   color: var(--alert);
 }
 
+.action-submit {
+  color: var(--confirm);
+}
+
 .action-edit:hover {
   color: var(--secondary);
 }

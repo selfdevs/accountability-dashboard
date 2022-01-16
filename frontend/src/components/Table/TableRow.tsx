@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DateTime } from 'luxon';
-import { useQueryClient } from 'react-query';
-import { request } from '../../modules/http/client';
+
+import { INPUT_CHANGE, SWITCH_EDIT_MODE, useTableRow } from './hooks';
 
 type TableRowProps = {
   _id: string;
@@ -11,44 +11,97 @@ type TableRowProps = {
   goal: number;
   done: number;
   comment: string;
-  setEditId: Function;
   readonly?: boolean;
 };
 
 const TableRow: FC<TableRowProps> = ({
   _id,
   date,
-  goal,
-  done,
-  comment,
-  setEditId,
+  goal: initialGoal,
+  done: initialDone,
+  comment: initialComment,
   readonly,
 }) => {
-  const queryClient = useQueryClient();
-  const deleteEntry = () => {
-    request(`/entry/${_id}`, 'DELETE')
-      .then(() => queryClient.invalidateQueries('entries'))
-      // eslint-disable-next-line no-console
-      .catch((e) => console.log(e));
-  };
-
-  const editEntry = () => {
-    setEditId(_id);
-  };
+  const { handleEdit, deleteEntry, state, dispatch } = useTableRow(
+    _id,
+    initialGoal,
+    initialDone,
+    initialComment
+  );
+  const { goal, comment, done, editMode } = state;
 
   return (
     <tr className="shadowed">
       <td>{DateTime.fromISO(date).toFormat('d')}</td>
-      <td>{goal}</td>
-      <td>{done}</td>
-      <td>{comment}</td>
+
+      {editMode ? (
+        <>
+          <td>
+            <input
+              type="number"
+              placeholder="Goal"
+              value={goal || ''}
+              onChange={(e) => {
+                dispatch({
+                  type: INPUT_CHANGE,
+                  name: 'goal',
+                  value: e.target.value,
+                });
+              }}
+              min={0}
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              placeholder="Done"
+              value={done || ''}
+              onChange={(e) => {
+                dispatch({
+                  type: INPUT_CHANGE,
+                  name: 'done',
+                  value: e.target.value,
+                });
+              }}
+              min={0}
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              placeholder="Comment"
+              value={comment || ''}
+              onChange={(e) => {
+                dispatch({
+                  type: INPUT_CHANGE,
+                  name: 'comment',
+                  value: e.target.value,
+                });
+              }}
+            />
+          </td>
+        </>
+      ) : (
+        <>
+          <td>{goal}</td>
+          <td>{done}</td>
+          <td>{comment}</td>
+        </>
+      )}
+
       {!readonly && (
         <td>
           <FontAwesomeIcon
-            icon={faPen}
-            onClick={editEntry}
-            className="action action-edit"
+            icon={editMode ? faCheck : faPen}
+            onClick={() => {
+              if (editMode) {
+                handleEdit();
+              }
+              dispatch({ type: SWITCH_EDIT_MODE });
+            }}
+            className={`action  ${editMode ? 'action-submit' : 'action-edit'}`}
           />
+
           <FontAwesomeIcon
             icon={faTrash}
             onClick={deleteEntry}
