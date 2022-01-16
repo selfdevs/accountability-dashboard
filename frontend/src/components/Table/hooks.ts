@@ -47,11 +47,11 @@ export const useTableRow = (
   initialGoal,
   initialDone,
   initialComment,
-  initialEditMode,
+  removeAddRow
 ) => {
   const queryClient = useQueryClient();
   const [state, dispatch] = useReducer(tableReducer, {
-    editMode: initialEditMode,
+    editMode: typeof entryId === 'undefined',
     day: DateTime.fromISO(initialDateISOString).day,
     goal: initialGoal,
     done: initialDone,
@@ -60,27 +60,32 @@ export const useTableRow = (
   const notify = useNotify();
 
   const deleteEntry = () => {
+    if (typeof entryId === 'undefined') {
+      removeAddRow();
+      return;
+    }
     request(`/entry/${entryId}`, 'DELETE')
       .then(() => queryClient.invalidateQueries('entries'))
       // eslint-disable-next-line no-console
       .catch((e) => console.log(e));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const pathName = entryId ? `/entry/${entryId}` : '/entry';
-    request(pathName, entryId ? 'PATCH' : 'POST', {
-      date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
-      goal: state.goal,
-      done: state.done,
-      comment: state.comment,
-    })
-        .then(async () => {
-          await queryClient.invalidateQueries('entries');
-        })
-        .catch((e) => notify(e.message));
+    try {
+      await request(pathName, entryId ? 'PATCH' : 'POST', {
+        date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
+        goal: state.goal,
+        done: state.done,
+        comment: state.comment,
+      });
+      await queryClient.invalidateQueries('entries');
+      return true;
+    } catch (e) {
+      notify(e.message);
+    }
+    return false;
   };
-
-
 
   return { state, dispatch, deleteEntry, handleSubmit };
 };

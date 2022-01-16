@@ -6,13 +6,13 @@ import { DateTime } from 'luxon';
 import { INPUT_CHANGE, SWITCH_EDIT_MODE, useTableRow } from './hooks';
 
 type TableRowProps = {
-  _id: string;
+  _id?: string;
   date: string;
   goal?: number;
   done?: number;
-  comment: string;
+  comment?: string;
   readonly?: boolean;
-  editMode?: boolean;
+  removeAddRow: Function;
 };
 
 const TableRow: FC<TableRowProps> = ({
@@ -22,7 +22,7 @@ const TableRow: FC<TableRowProps> = ({
   done: initialDone,
   comment: initialComment,
   readonly,
-  editMode: initialEditMode,
+  removeAddRow,
 }) => {
   const { handleSubmit, deleteEntry, state, dispatch } = useTableRow(
     _id,
@@ -30,7 +30,7 @@ const TableRow: FC<TableRowProps> = ({
     initialGoal,
     initialDone,
     initialComment,
-    initialEditMode,
+    removeAddRow
   );
   const { day, goal, comment, done, editMode } = state;
 
@@ -40,19 +40,19 @@ const TableRow: FC<TableRowProps> = ({
         <>
           <td>
             <input
-                type="number"
-                placeholder="Day"
-                value={day}
-                onChange={(e) =>
-                    dispatch({
-                      type: INPUT_CHANGE,
-                      name: 'day',
-                      value: e.target.value,
-                    })
-                }
-                step={1}
-                min={1}
-                max={31}
+              type="number"
+              placeholder="Day"
+              value={day}
+              onChange={(e) =>
+                dispatch({
+                  type: INPUT_CHANGE,
+                  name: 'day',
+                  value: e.target.value,
+                })
+              }
+              step={1}
+              min={1}
+              max={31}
             />
           </td>
           <td>
@@ -113,11 +113,14 @@ const TableRow: FC<TableRowProps> = ({
         <td>
           <FontAwesomeIcon
             icon={editMode ? faCheck : faPen}
-            onClick={() => {
+            onClick={async () => {
               if (editMode) {
-                handleSubmit();
+                if (await handleSubmit()) {
+                  dispatch({ type: SWITCH_EDIT_MODE });
+                }
+              } else {
+                dispatch({ type: SWITCH_EDIT_MODE });
               }
-              dispatch({ type: SWITCH_EDIT_MODE });
             }}
             className={`action  ${editMode ? 'action-submit' : 'action-edit'}`}
           />
