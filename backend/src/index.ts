@@ -1,3 +1,4 @@
+import './services/envService';
 import Koa, { DefaultState } from 'koa';
 import cors from '@koa/cors';
 import koaBody from 'koa-body';
@@ -7,7 +8,6 @@ import authRouter from './routers/auth';
 import { indexNewRelicScriptInjection } from './services/monitoringService';
 import userRouter from './routers/user';
 import 'newrelic';
-import './services/envService';
 import './services/databaseService';
 import { UserInterface } from './domains/user/model';
 import entryRouter from './routers/entry';

@@ -7,7 +7,7 @@ export const generateJWT = async (userId: string): Promise<string> => {
     },
     process.env.AUTH_SECRET,
     {
-      expiresIn: process.env.TOKEN_LIFESPAN,
+      expiresIn: parseInt(process.env.TOKEN_LIFESPAN, 10),
     }
   );
 };
