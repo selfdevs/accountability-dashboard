@@ -11,9 +11,9 @@ When you log in via Discord to this application, we store information from
 your Discord account:
 
 - Email, used to guarantee each account is unique on the platform. We do not
-send any email.
+  send any email.
 - Discord username, used as a display name and as URL shortcut to your
-dashboard.
+  dashboard.
 - Discord avatar, used as illustration for you profile in the application.
 - Discord ID, used for Discord commands features.
 
