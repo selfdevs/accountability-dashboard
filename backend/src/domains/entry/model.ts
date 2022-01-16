@@ -6,8 +6,8 @@ const ENTRY_MODEL_NAME = 'Entry';
 export interface EntryInterface {
   date: Date;
   user: ObjectId;
-  goal: number;
-  done: number;
+  goal: number; // Number of units planned for the day
+  done: number; // Number of units completed
   comment: string;
 }
 
