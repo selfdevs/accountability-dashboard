@@ -1,4 +1,5 @@
 node_modules/
 dist/
+coverage/
 .env.local
 newrelic_agent.log
