@@ -1,11 +1,11 @@
 import { request } from '../modules/http/client';
 
 type Entry = {
-  _id: string;
+  _id?: string;
   date: string;
-  goal: number;
-  done: number;
-  comment: string;
+  goal?: number;
+  done?: number;
+  comment?: string;
 };
 
 export const fetchEntries = (username: string) => () =>
