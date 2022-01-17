@@ -10,6 +10,7 @@ export interface UserInterface {
   discordCredentials: ObjectId;
   dashboardTitle: string;
   instagram?: string;
+  scratchpad?: string;
   discordId: string;
   discordAvatar: string;
 }
@@ -22,6 +23,7 @@ export const userSchema = new Schema<UserInterface>({
     ref: DISCORD_CREDENTIALS_MODEL_NAME,
     required: true,
   },
+  scratchpad: { type: String, default: '', required: true },
   discordAvatar: { type: String, required: true },
   discordId: { type: String, required: true },
   dashboardTitle: { type: String, default: 'My dashboard', required: true },
