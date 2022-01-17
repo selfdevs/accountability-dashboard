@@ -95,3 +95,7 @@ input[type='number'] {
 #github-watermark {
   background-color: rgba(0, 0, 0, 0.85);
 }
+
+#legal-watermark {
+  color: black;
+}
