@@ -6,7 +6,9 @@ import useLocalFile from '../hooks/useLocalFile';
 const PrivacyPolicy = () => {
   const markdownContent = useLocalFile(privacyPolicyDocument);
 
-  return <ReactMarkdown>{markdownContent}</ReactMarkdown>;
+  return (
+    <ReactMarkdown className="scrollable">{markdownContent}</ReactMarkdown>
+  );
 };
 
 export default PrivacyPolicy;

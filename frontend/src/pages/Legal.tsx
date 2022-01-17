@@ -6,7 +6,9 @@ import useLocalFile from '../hooks/useLocalFile';
 const Legal = () => {
   const markdownContent = useLocalFile(legalDocument);
 
-  return <ReactMarkdown>{markdownContent}</ReactMarkdown>;
+  return (
+    <ReactMarkdown className="scrollable">{markdownContent}</ReactMarkdown>
+  );
 };
 
 export default Legal;
