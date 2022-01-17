@@ -30,4 +30,5 @@ administrators.
 
 ## Delete your data
 
-If you want us to remove all your personal data, feel free to contact us.
+If you want us to remove all your personal data, feel free to email us at
+gdpr@theselfdev.com

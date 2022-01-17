@@ -1,5 +1,11 @@
 # Legal information
 
+Kemperplatz 1
+
+10785 Berlin
+
+Germany
+
 ## Contact
 
 E-Mail: hello@theselfdev.com
