@@ -3,8 +3,34 @@ import {
   generateAuthorizationHeader,
   successResponse,
   errorResponse,
+  generateSearchParams,
 } from '../httpService';
 import { ParameterizedContext } from 'koa';
+
+describe('generateSearchParams', () => {
+  it('should return empty string if no params', () => {
+    const params = {};
+    const result = generateSearchParams(params);
+    expect(result.toString()).toBe('');
+  });
+
+  it('should return empty string if no params', () => {
+    const params = {
+      name: 'test',
+    };
+    const result = generateSearchParams(params);
+    expect(result.toString()).toBe('name=test');
+  });
+
+  it('should return empty string if no params', () => {
+    const params = {
+      name: 'test',
+      age: '20',
+    };
+    const result = generateSearchParams(params);
+    expect(result.toString()).toBe('name=test&age=20');
+  });
+});
 
 describe('generateContentTypeHeader', () => {
   it('should return correct content type header', () => {
