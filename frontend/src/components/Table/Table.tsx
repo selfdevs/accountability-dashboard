@@ -4,7 +4,6 @@ import { DateTime } from 'luxon';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import { useScrollToCurrentDay } from './hooks';
-// eslint-disable-next-line import/no-cycle
 import EntryEditor from '../EntryEditor/EntryEditor';
 import Entry from '../../entities/Entry';
 import Button from '../Button/Button';
