@@ -14,7 +14,7 @@ describe('generateSearchParams', () => {
     expect(result.toString()).toBe('');
   });
 
-  it('should return empty string if no params', () => {
+  it('should return one param', () => {
     const params = {
       name: 'test',
     };
@@ -22,7 +22,7 @@ describe('generateSearchParams', () => {
     expect(result.toString()).toBe('name=test');
   });
 
-  it('should return empty string if no params', () => {
+  it('should return multiple params', () => {
     const params = {
       name: 'test',
       age: '20',
