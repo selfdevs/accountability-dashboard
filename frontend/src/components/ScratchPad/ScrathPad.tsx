@@ -4,11 +4,11 @@ import './stylesheet.css';
 import { useScratchPad } from './hooks';
 
 type ScratchPadProps = {
-  defaultText: string;
+  text: string;
 };
 
-const ScratchPad: FC<ScratchPadProps> = ({ defaultText }) => {
-  const { loadingText, value, onChangeHandler } = useScratchPad(defaultText);
+const ScratchPad: FC<ScratchPadProps> = ({ text }) => {
+  const { loadingText, value, onChangeHandler } = useScratchPad(text);
 
   return (
     <Card className="flex-column scratch-card">

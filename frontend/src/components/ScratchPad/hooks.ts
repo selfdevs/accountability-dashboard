@@ -6,9 +6,10 @@ import {
   useRef,
   useState,
 } from 'react';
-import { getFromStorage, saveToStorage } from '../../modules/storage/io';
-import { SAVING_DELAY, SCRATCHPAD_STORAGE_KEY } from './constants';
+import _ from 'lodash';
+import { SAVING_DELAY } from './constants';
 import { getStateText } from './utils';
+import { request } from '../../modules/http/client';
 
 type ScratchPadHook = {
   loadingText: string;
@@ -16,7 +17,7 @@ type ScratchPadHook = {
   value: string;
 };
 
-export const useScratchPad = (defaultText: string): ScratchPadHook => {
+export const useScratchPad = (text: string): ScratchPadHook => {
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const timer = useRef(null);
@@ -26,7 +27,7 @@ export const useScratchPad = (defaultText: string): ScratchPadHook => {
     setLoading(true);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      saveToStorage(SCRATCHPAD_STORAGE_KEY, e.target.value);
+      request('/user', 'PATCH', { scratchpad: e.target.value }).catch(_.noop);
       setLoading(false);
     }, SAVING_DELAY);
 
@@ -36,13 +37,8 @@ export const useScratchPad = (defaultText: string): ScratchPadHook => {
   }, []);
 
   useEffect(() => {
-    const restoredData = getFromStorage(SCRATCHPAD_STORAGE_KEY);
-    if (restoredData) {
-      setValue(restoredData);
-    } else {
-      setValue(defaultText);
-    }
-  }, []);
+    setValue(text);
+  }, [text]);
 
   const loadingText = useMemo(() => getStateText(loading), [loading]);
 

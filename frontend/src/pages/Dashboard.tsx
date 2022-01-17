@@ -46,7 +46,7 @@ const Dashboard: FC<DashboardProps> = ({ readonly }) => {
         <Table data={data || []} readonly={readonly} />
         <div className="flex1">
           <Chart entries={data || []} />
-          {!readonly && <ScratchPad defaultText="Hello world" />}
+          {!readonly && <ScratchPad text={user?.scratchpad} />}
         </div>
       </div>
     </>
