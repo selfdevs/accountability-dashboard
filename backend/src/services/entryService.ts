@@ -33,11 +33,11 @@ export const generateMissingEntries = async (userId: string) => {
 export const toReadableEntry = (data?: EntryInterface) => {
   if (!data) return 'No data for today';
   const goal = data.goal
-    ? `Your goal for today was set to ${data.goal}`
+    ? `Your goal for today was set to \`${data.goal}\``
     : 'You had no goal set for today';
   const done = data.done
-    ? `You have completed ${data.done}`
+    ? `You have completed \`${data.done}\``
     : 'You did not record what you achieved';
-  const comment = data.comment ? `Comment: ${data.comment}` : 'No comment';
+  const comment = data.comment ? `Comment: \`${data.comment}\`` : 'No comment';
   return [goal, done, comment].join('\n');
 };
