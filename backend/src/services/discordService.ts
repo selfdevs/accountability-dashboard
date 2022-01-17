@@ -82,7 +82,7 @@ export const generateAndStoreDiscordCredentials = async (
   };
 };
 
-const discordRequest = async (
+export const discordRequest = async (
   accessToken: string,
   path: string
 ): Promise<any> => {
