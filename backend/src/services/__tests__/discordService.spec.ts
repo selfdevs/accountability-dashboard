@@ -2,6 +2,13 @@ import fetch from 'node-fetch';
 import { discordRequest } from '../discordService';
 
 jest.mock('node-fetch', () => jest.fn());
+const response = Promise.resolve({
+  ok: true,
+  json: () => {
+    return { message: 'Hello' };
+  },
+});
+(fetch as unknown as jest.Mock).mockImplementation(() => response);
 
 process.env.DISCORD_API = 'https://discord.com/api';
 

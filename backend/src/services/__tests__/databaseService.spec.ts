@@ -7,6 +7,7 @@ jest.mock('mongoose', () => ({
 }));
 
 console.error = jest.fn();
+console.log = jest.fn();
 
 process.env.DATABASE_URL = 'mongodb://localhost:27017/test';
 
