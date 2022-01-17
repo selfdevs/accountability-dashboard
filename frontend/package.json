@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "yarn lint:code; yarn lint:docs",
-    "lint:code": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:code": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
     "lint:docs": "markdownlint . -i node_modules",
     "prettier": "prettier src -c",
     "security": "yarn-audit-ci"

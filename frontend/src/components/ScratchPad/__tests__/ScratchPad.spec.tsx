@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import ScratchPad from '../ScrathPad';
 import { SAVED, SAVING } from '../constants';
-import { getFromStorage } from '../../../modules/storage/io';
 
 const SAMPLE_TEXT = 'Hello world 🚀';
 
