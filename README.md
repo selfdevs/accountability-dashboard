@@ -40,11 +40,10 @@ Webpage: [theselfdev.com](https://theselfdev.com)
 
 The plan is to use the community server and host each individuals dashboard on an individual page:
 
-**Example dashboard URLs to edit** (those links are only for demonstration and not working)
-* theselfdev.com/dashboard/long
-* theselfdev.com/dashboard/k_talpa
-* theselfdev.com/dashboard/marvin
-
+**Example dashboard URLs**
+* [dashboard.theselfdev.com/longlikeshort](https://dashboard.theselfdev.com/longlikeshort)
+* [dashboard.theselfdev.com/K_Talpa](https://dashboard.theselfdev.com/K_Talpa)
+* [dashboard.theselfdev.com/M123](https://dashboard.theselfdev.com/M123)
 
 ---
 ## Project Direction & Future Roadmap
