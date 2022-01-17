@@ -11,5 +11,5 @@ export type User = {
   discordAvatar: string;
 };
 
-export const fetchUser = (username: string) => () =>
-  request(`/user/${username}`);
+export const fetchUser = (username?: string) => () =>
+  request(username ? `/user/${username}` : '/user');

@@ -30,7 +30,9 @@ const Dashboard: FC<DashboardProps> = ({ readonly }) => {
 
   const { data: user } = useQuery(
     ['user', username],
-    fetchUser(usernameToQuery),
+    fetchUser(
+      loggedInUser.username !== usernameToQuery ? usernameToQuery : undefined
+    ),
     { enabled: Boolean(usernameToQuery) }
   );
 
