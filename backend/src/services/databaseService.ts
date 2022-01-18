@@ -1,5 +1,5 @@
 import { connect } from 'mongoose';
-import _ from 'lodash';
+import { noop } from 'lodash';
 
 export const init = async () => {
   try {
@@ -10,4 +10,4 @@ export const init = async () => {
   }
 };
 
-init().then(_.noop).catch(_.noop);
+init().then(noop).catch(noop);
