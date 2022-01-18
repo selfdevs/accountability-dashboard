@@ -12,5 +12,5 @@ export type User = {
   scratchpad?: string;
 };
 
-export const fetchUser = (username?: string) => () =>
-  request(username ? `/user/${username}` : '/user');
+export const fetchUser = (username: string) => () =>
+  request(username === 'me' ? '/user' : `/user/${username}`);
