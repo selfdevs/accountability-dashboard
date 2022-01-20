@@ -23,7 +23,7 @@ export const userSchema = new Schema<UserInterface>({
     ref: DISCORD_CREDENTIALS_MODEL_NAME,
     required: true,
   },
-  scratchpad: { type: String, default: '', required: true },
+  scratchpad: { type: String, default: '' },
   discordAvatar: { type: String, required: true },
   discordId: { type: String, required: true },
   dashboardTitle: { type: String, default: 'My dashboard', required: true },
