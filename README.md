@@ -1,7 +1,5 @@
 # self.dev Accountability Dashboard
 
-
-
 ##### TL;DR
 <img width='200' src="docs/screenshots/selfdev_logo.png?raw=true" align="right" hspace="1" vspace="1">
 
@@ -14,6 +12,9 @@ mainly consist of 3 components:
 * Scratchboard
 
 ![Screenshot](docs/screenshots/BasicDashboardExample_excel.png?raw=true)
+
+How it will look like:
+![Screenshot](docs/screenshots/selfdevDashboard_example.png?raw=true)
 
 ---
 ## Background Story
@@ -37,13 +38,15 @@ Frontend: ReactJS
 Backend: MongoDB
 
 Webpage: [theselfdev.com](https://theselfdev.com)
-
+Dashboard: [dashboard.theselfdev.com](https://dashboard.theselfdev.com)
+Login: [dashboard.theselfdev.com/me](https://dashboard.theselfdev.com/me)
 The plan is to use the community server and host each individuals dashboard on an individual page:
 
 **Example dashboard URLs**
 * [dashboard.theselfdev.com/longlikeshort](https://dashboard.theselfdev.com/longlikeshort)
 * [dashboard.theselfdev.com/K_Talpa](https://dashboard.theselfdev.com/K_Talpa)
 * [dashboard.theselfdev.com/M123](https://dashboard.theselfdev.com/M123)
+
 
 ---
 ## Project Direction & Future Roadmap
