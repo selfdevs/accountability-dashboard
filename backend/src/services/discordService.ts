@@ -10,7 +10,7 @@ import DiscordCredentials, {
 import { Error, HydratedDocument } from 'mongoose';
 import Entry from '../domains/entry/model';
 import nacl from 'tweetnacl';
-import _ from 'lodash';
+import { get } from 'lodash';
 import User from '../domains/user/model';
 import { toReadableEntry } from './entryService';
 import { DateTime } from 'luxon';
@@ -82,7 +82,7 @@ export const generateAndStoreDiscordCredentials = async (
   };
 };
 
-const discordRequest = async (
+export const discordRequest = async (
   accessToken: string,
   path: string
 ): Promise<any> => {
@@ -116,20 +116,20 @@ export const verifySignature = (
 };
 
 export const handleInteraction = async (interaction: any) => {
-  const interactionType = _.get(interaction, 'type', null);
-  const fieldToUpdate = _.get(
+  const interactionType = get(interaction, 'type', null);
+  const fieldToUpdate = get(
     interaction,
     'data.options[0].options[0].options[0].name',
     null
   );
-  const userInput = _.get(
+  const userInput = get(
     interaction,
     'data.options[0].options[0].options[0].value',
     null
   );
   if (interactionType === 1) return { type: 1 };
   if (interactionType !== 2) throw new Error('Unknown interaction');
-  const userId = _.get(interaction, 'member.user.id', null);
+  const userId = get(interaction, 'member.user.id', null);
   const user = await User.findOne({ discordId: userId });
   if (!user) return { type: 4, data: { content: "We don't know you yet" } };
   const today = await Entry.findOne({

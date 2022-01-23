@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import Entry, { EntryInterface } from '../domains/entry/model';
 import { getMonthLimits } from '../utils/date';
-import _ from 'lodash';
+import { difference } from 'lodash';
 
 export const getCurrentMonthEntries = async (userId: string) => {
   const { lastOfMonth, firstOfMonth } = getMonthLimits();
@@ -18,7 +18,7 @@ export const generateMissingEntries = async (userId: string) => {
     .map((v, i) => i + 1);
   const entries = await getCurrentMonthEntries(userId);
   const existingDays = entries.map(({ date }) => date.getDate());
-  const missingDays = _.difference(daysInMonth, existingDays);
+  const missingDays = difference(daysInMonth, existingDays);
   return Promise.all(
     missingDays.map((day) => {
       const newEntry = new Entry({
