@@ -11,15 +11,16 @@ mainly consist of 3 components:
 * Chart
 * Scratchboard
 
+How the excel version looks like:
 ![Screenshot](docs/screenshots/BasicDashboardExample_excel.png?raw=true)
 
-How it will look like:
+How the final version would look like:
 ![Screenshot](docs/screenshots/selfdevDashboard_example.png?raw=true)
 
 ---
 ## Background Story
 
-As a community which focuses on _productivity_ and _self.development_ we want to create a web dashboard which everyone can use to keep track of a single goal to keep ourselves more accountable and help each user reaching our goals more effectively and efficiently. The motivation and inspiration comes from the YouTuber [Tina Hoang](https://www.scoreboardswithtina.com/) and the book **4 Disciplines of Execution** by Franklin Covey.
+As a community which focuses on _productivity_ and _self.development_ we want to create a web dashboard which everyone can use to keep track of a single goal to keep ourselves more accountable and help each user reaching our goals more effectively and efficiently. The motivation and inspiration comes from the YouTuber [Tina Huang](https://www.scoreboardswithtina.com/) and the book **4 Disciplines of Execution** by Franklin Covey.
 
 ### **Main Idea**
 Our idea is to create an independent **web dashboard** similar to the  [workout dashboard/](https://dashboard-twitch.vercel.app/ "https://dashboard-twitch.vercel.app/")) we used on TwitchTV but for generic goals like learning a (programming) language, getting your first job, working on a project - it can be anything.
@@ -33,13 +34,12 @@ Adding a healthy pinch of competitive gamification to keep ourselves accountable
 
 ---
 ## Tech Details
+* Frontend: ReactJS
+* Backend: MongoDB
 
-Frontend: ReactJS
-Backend: MongoDB
-
-Webpage: [theselfdev.com](https://theselfdev.com)
-Dashboard: [dashboard.theselfdev.com](https://dashboard.theselfdev.com)
-Login: [dashboard.theselfdev.com/me](https://dashboard.theselfdev.com/me)
+* Webpage: [theselfdev.com](https://theselfdev.com)
+* Dashboard: [dashboard.theselfdev.com](https://dashboard.theselfdev.com)
+* Login: [dashboard.theselfdev.com/me](https://dashboard.theselfdev.com/me)
 The plan is to use the community server and host each individuals dashboard on an individual page:
 
 **Example dashboard URLs**
