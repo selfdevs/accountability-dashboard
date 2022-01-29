@@ -27,7 +27,9 @@ export const useScratchPad = (text: string): ScratchPadHook => {
     setLoading(true);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      request('/user', 'PATCH', { scratchpad: e.target.value }).catch(_.noop);
+      request('/user/me', 'PATCH', { scratchpad: e.target.value }).catch(
+        _.noop
+      );
       setLoading(false);
     }, SAVING_DELAY);
 

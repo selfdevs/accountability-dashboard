@@ -1,9 +1,9 @@
 import { User } from '../../entities/User';
 
-export const generateAvatarUrl = (
+export const generateAvatarUrl = async (
   discordId: User['discordId'],
   discordAvatar: User['discordAvatar']
-): string => {
+): Promise<string> => {
   const isMissingAvatarData =
     !discordAvatar ||
     discordAvatar.length === 0 ||
@@ -13,5 +13,13 @@ export const generateAvatarUrl = (
   if (isMissingAvatarData)
     return 'https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-15.jpg';
 
-  return `${process.env.REACT_APP_DISCORD_CDN}/avatars/${discordId}/${discordAvatar}.png`;
+  try {
+    const { status } = await fetch(
+      `https://cdn.discordapp.com/avatars/${discordId}/${discordAvatar}.png`
+    );
+    if (status !== 200) throw new Error('Avatar not found');
+    return `${process.env.REACT_APP_DISCORD_CDN}/avatars/${discordId}/${discordAvatar}.png`;
+  } catch (e) {
+    return 'https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-15.jpg';
+  }
 };

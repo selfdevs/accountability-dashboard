@@ -10,8 +10,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Card from '../Card';
 import './styles.css';
 import { User } from '../../entities/User';
-import { generateAvatarUrl } from '../../modules/discord/avatars';
 import { useLogout } from '../../contexts/Auth';
+import Avatar from '../Avatar/Avatar';
 
 const SocialButton = ({ icon, network, link }) => (
   <button
@@ -39,10 +39,10 @@ const Social: FC<SocialProps> = ({ readonly, user }) => {
 
   return (
     <Card className="social-card flex-row">
-      <img
-        src={generateAvatarUrl(discordId, discordAvatar)}
-        alt="Profile"
-        className="social-image"
+      <Avatar
+        discordId={discordId}
+        discordAvatar={discordAvatar}
+        style={{ marginRight: '1rem' }}
       />
       <div style={{ color: 'gray' }}>
         {readonly && <span className="social-visiting">Visiting</span>}
