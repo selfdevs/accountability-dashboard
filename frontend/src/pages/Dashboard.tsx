@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from '../components/Table/Table';
 import ScratchPad from '../components/ScratchPad/ScrathPad';
 import Social from '../components/Social/Social';
@@ -18,21 +20,26 @@ const Dashboard: FC<DashboardProps> = ({ readonly }) => {
   const { username } = useParams();
   const loggedInUser = useUser();
 
+  const personalDataUsername = username || 'me';
   const { data: user } = useQuery(
-    ['user', username],
-    fetchUser(username || 'me')
+    ['user', personalDataUsername],
+    fetchUser(personalDataUsername)
   );
 
+  const entriesUsername = username || loggedInUser?.username;
   const { data } = useQuery(
-    'entries',
-    fetchEntries(username || loggedInUser?.username),
+    ['entries', entriesUsername],
+    fetchEntries(entriesUsername),
     {
-      enabled: Boolean(username || loggedInUser?.username),
+      enabled: Boolean(entriesUsername),
     }
   );
 
   return (
     <>
+      <NavLink to="/">
+        <FontAwesomeIcon icon={faHome} />
+      </NavLink>
       <EditableTitle title={user?.dashboardTitle} readonly={readonly} />
       <Social user={user} readonly={readonly} />
       <div className="layout">

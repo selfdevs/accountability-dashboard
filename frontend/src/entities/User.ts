@@ -1,6 +1,7 @@
 import { request } from '../modules/http/client';
 
 export type User = {
+  _id: string;
   username: string;
   dashboardTitle?: string;
   instagram?: string;
@@ -13,4 +14,4 @@ export type User = {
 };
 
 export const fetchUser = (username: string) => () =>
-  request(username === 'me' ? '/user' : `/user/${username}`);
+  request(`/user/${username}`);

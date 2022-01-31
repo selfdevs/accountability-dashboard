@@ -1,0 +1,12 @@
+.homepage-users-container {
+  text-align: center;
+  font-size: small;
+  margin-top: 30vh;
+}
+
+.homepage-user-link {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}

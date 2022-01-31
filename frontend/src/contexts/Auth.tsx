@@ -40,7 +40,7 @@ const Auth: FC = ({ children }) => {
       setStatus(Status.VISITOR);
       return;
     }
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/user`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/user/me`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
