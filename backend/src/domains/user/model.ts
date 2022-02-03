@@ -1,5 +1,6 @@
 import { Schema, model, ObjectId } from 'mongoose';
 import { DISCORD_CREDENTIALS_MODEL_NAME } from '../discordCredentials/model';
+import { EntryInterface } from '../entry/model';
 
 export const USER_MODEL_NAME = 'User';
 
@@ -13,6 +14,10 @@ export interface UserInterface {
   scratchpad?: string;
   discordId: string;
   discordAvatar: string;
+}
+
+export interface UserInterfaceWithEntries extends UserInterface {
+  entries: EntryInterface[];
 }
 
 export const userSchema = new Schema<UserInterface>({

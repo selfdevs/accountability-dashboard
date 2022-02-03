@@ -19,6 +19,6 @@ const entrySchema = new Schema<EntryInterface>({
   comment: { type: String },
 });
 
-const entryModel = model(ENTRY_MODEL_NAME, entrySchema);
+const Entry = model(ENTRY_MODEL_NAME, entrySchema);
 
-export default entryModel;
+export default Entry;
