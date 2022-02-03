@@ -17,7 +17,7 @@ const EditableTitle = ({ title, readonly }) => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      request('/user', 'PATCH', { dashboardTitle: newTitle }).catch(_.noop);
+      request('/user/me', 'PATCH', { dashboardTitle: newTitle }).catch(_.noop);
       setEditMode(false);
     },
     [newTitle]
