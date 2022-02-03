@@ -6,13 +6,21 @@ import newrelic from 'newrelic';
 import User from '../domains/user/model';
 import _ from 'lodash';
 import { errorResponse } from '../services/httpService';
+import { getCurrentMonthEntries } from '../services/entryService';
 
 const userRouter = new Router<DefaultState, ApplicationContext>();
 
 userRouter.get('/', async (ctx, next) => {
   try {
     const users = await User.find();
-    ctx.body = users;
+    const usersWithEntries = await Promise.all(
+      users.map(async (user) => {
+        const entries = await getCurrentMonthEntries(user._id);
+
+        return { ...user.toObject(), entries };
+      })
+    );
+    ctx.body = usersWithEntries.filter(({ entries }) => entries.length > 0);
   } catch (error) {
     errorResponse(ctx, error);
   }
