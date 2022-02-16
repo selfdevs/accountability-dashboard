@@ -10,6 +10,7 @@ jest.mock('jsonwebtoken', () => ({
 }));
 
 process.env.AUTH_SECRET = 'secret';
+process.env.REFRESH_SECRET = 'secret';
 process.env.TOKEN_LIFESPAN = '3600';
 
 describe('getTokenFromAuthorizationHeader', () => {
