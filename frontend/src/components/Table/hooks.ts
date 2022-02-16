@@ -1,8 +1,7 @@
 import { useLayoutEffect, useReducer, useRef } from 'react';
 import { DateTime } from 'luxon';
 import { useQueryClient } from 'react-query';
-import { useNotify } from '../../contexts/Notification';
-import { request } from '../../modules/http/client';
+import instance from '../../modules/http/axiosClient';
 
 export const useScrollToCurrentDay = (enable: boolean) => {
   const tbodyRef = useRef(null);
@@ -57,34 +56,39 @@ export const useTableRow = (
     done: initialDone,
     comment: initialComment,
   });
-  const notify = useNotify();
 
   const deleteEntry = () => {
     if (typeof entryId === 'undefined') {
       removeAddRow();
       return;
     }
-    request(`/entry/${entryId}`, 'DELETE')
-      .then(() => queryClient.invalidateQueries('entries'))
-      // eslint-disable-next-line no-console
-      .catch((e) => console.log(e));
+    if (
+      // eslint-disable-next-line no-alert
+      window.confirm(
+        `You sure you wanna delete Entry for day ${state.day}? Think again.`
+      )
+    ) {
+      instance
+        .delete(`/entry/${entryId}`)
+        .then(() => queryClient.invalidateQueries('entries'));
+    }
   };
 
   const handleSubmit = async () => {
     const pathName = entryId ? `/entry/${entryId}` : '/entry';
-    try {
-      await request(pathName, entryId ? 'PATCH' : 'POST', {
+    await instance({
+      url: pathName,
+      method: entryId ? 'PATCH' : 'POST',
+      data: {
         date: DateTime.now().toUTC().set({ day: state.day }).startOf('day'),
         goal: state.goal,
         done: state.done,
         comment: state.comment,
-      });
-      await queryClient.invalidateQueries('entries');
-      return true;
-    } catch (e) {
-      notify(e.message);
-    }
-    return false;
+      },
+    });
+
+    await queryClient.invalidateQueries('entries');
+    return true;
   };
 
   return { state, dispatch, deleteEntry, handleSubmit };

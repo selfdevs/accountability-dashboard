@@ -1,4 +1,8 @@
-import { generateJWT, getTokenFromAuthorizationHeader } from '../authService';
+import {
+  generateJWT,
+  getTokenFromAuthorizationHeader,
+  generateRefreshJWT,
+} from '../authService';
 import { sign } from 'jsonwebtoken';
 
 jest.mock('jsonwebtoken', () => ({
@@ -20,5 +24,12 @@ describe('generateJWT', () => {
     expect(sign).toHaveBeenCalledWith({ userId: 'userId' }, 'secret', {
       expiresIn: 3600,
     });
+  });
+});
+
+describe('generateRefreshJWT', () => {
+  it('should return a refresh JWT with no expiration', () => {
+    generateRefreshJWT('userId');
+    expect(sign).toHaveBeenCalledWith({ userId: 'userId' }, 'secret');
   });
 });

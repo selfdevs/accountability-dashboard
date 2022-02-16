@@ -63,6 +63,13 @@ export const generateAndStoreDiscordCredentials = async (
 ): Promise<GenerateAndStoreDiscordCredentials> => {
   const discordData = await exchangeTokenWithAuthToken(code, origin);
   const discordUser = await getCurrentUser(discordData.access_token);
+  const user = await User.findOne({ email: discordUser.email });
+  if (user) {
+    const prevCredentials = await DiscordCredentials.findById(
+      user.discordCredentials
+    );
+    await prevCredentials.delete();
+  }
   const discordCredentialsEntity = new DiscordCredentials({
     accessToken: discordData.access_token,
     expiresIn: discordData.expires_in,

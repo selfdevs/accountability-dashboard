@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
-import { request } from '../modules/http/client';
-import { saveToStorage } from '../modules/storage/io';
+import { saveAccessToken, saveRefreshToken } from '../modules/storage/io';
 import LoginButton from '../components/LoginButton/LoginButton';
 import { useNotify } from '../contexts/Notification';
 import { useRefresh, useUser } from '../contexts/Auth';
@@ -9,6 +8,7 @@ import Button from '../components/Button/Button';
 import { User } from '../entities/User';
 import Avatar from '../components/Avatar/Avatar';
 import './homepage.css';
+import instance from '../modules/http/axiosClient';
 
 const LOGIN_URL = `https://discord.com/api/oauth2/authorize?client_id=927637722628259842&redirect_uri=${encodeURIComponent(
   process.env.REACT_APP_REDIRECT_URI
@@ -18,23 +18,26 @@ const Homepage = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const notify = useNotify();
-  const refresh = useRefresh();
   const user = useUser();
   const [users, setUsers] = React.useState<User[]>([]);
+  const refresh = useRefresh();
 
   useEffect(() => {
-    request('/user').then((res) => {
-      setUsers(res.reverse());
+    instance.get('/user').then(({ data }) => {
+      setUsers(data.reverse());
     });
   }, []);
 
   useEffect(() => {
     const code = params.get('code');
     if (code) {
-      request('/auth/discord', 'POST', { code })
-        .then(({ token }: { token: string }) => {
-          saveToStorage('accessToken', token);
+      instance
+        .post('/auth/discord', { code })
+        .then(({ data }) => {
+          saveAccessToken(data.accessToken);
+          saveRefreshToken(data.refreshToken);
           refresh();
+          navigate('/');
         })
         .catch((e) => {
           notify(e.message);

@@ -8,11 +8,14 @@ export interface DiscordCredentialsInterface {
   refreshToken: string;
 }
 
-const discordCredentialsSchema = new Schema<DiscordCredentialsInterface>({
-  accessToken: { type: String, required: true },
-  expiresIn: { type: Number, required: true },
-  refreshToken: { type: String, required: true },
-});
+const discordCredentialsSchema = new Schema<DiscordCredentialsInterface>(
+  {
+    accessToken: { type: String, required: true },
+    expiresIn: { type: Number, required: true },
+    refreshToken: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
 const discordCredentialsModel = model(
   DISCORD_CREDENTIALS_MODEL_NAME,
