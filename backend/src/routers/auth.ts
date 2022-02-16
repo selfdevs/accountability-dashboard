@@ -53,6 +53,7 @@ authRouter.post('/discord', async (ctx, next) => {
 authRouter.post('/token', async (ctx, next) => {
   try {
     const { token } = ctx.request.body;
+    await verify(token, process.env.REFRESH_SECRET);
     const refreshTokenDoc = await Token.findOne({ token });
 
     if (!refreshTokenDoc)
@@ -63,8 +64,6 @@ authRouter.post('/token', async (ctx, next) => {
       );
 
     await refreshTokenDoc.delete();
-
-    await verify(token, process.env.REFRESH_SECRET);
 
     const { userId } = decode(token) as userPayload;
 
@@ -96,6 +95,7 @@ authRouter.post('/token', async (ctx, next) => {
 authRouter.post('/logout', async (ctx, next) => {
   try {
     const { token } = ctx.request.body;
+    await verify(token, process.env.REFRESH_SECRET);
     const refreshTokenDoc = await Token.findOne({ token });
 
     if (!refreshTokenDoc) {
