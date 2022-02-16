@@ -88,7 +88,6 @@ authRouter.post('/token', async (ctx, next) => {
     ctx.response.status = 201;
   } catch (e) {
     newrelic.noticeError(e);
-    console.log('here');
     console.error(e.message);
     errorResponse(ctx, e.message);
   }
@@ -97,18 +96,17 @@ authRouter.post('/token', async (ctx, next) => {
 authRouter.post('/logout', async (ctx, next) => {
   try {
     const { token } = ctx.request.body;
-    console.log(ctx.request.body);
     const refreshTokenDoc = await Token.findOne({ token });
-    console.log(token, refreshTokenDoc);
-    if (!refreshTokenDoc)
+
+    if (!refreshTokenDoc) {
       return errorResponse(
         ctx,
         'Token Not Found, Login again to get one.',
         403
       );
+    }
 
     await refreshTokenDoc.delete();
-
     ctx.response.status = 204;
   } catch (e) {
     newrelic.noticeError(e);
