@@ -86,8 +86,7 @@ const TableRow: FC<TableRowProps> = ({
             />
           </td>
           <td>
-            <input
-              type="text"
+            <textarea
               placeholder="Comment"
               value={comment || ''}
               onChange={(e) => {
