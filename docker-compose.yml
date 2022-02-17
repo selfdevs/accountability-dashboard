@@ -7,3 +7,12 @@ services:
     environment:
       - NEW_RELIC_LICENSE_KEY
     hostname: ${HOSTNAME:-ziro-host}
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: ziro
+    ports:
+      - 27017:27017
