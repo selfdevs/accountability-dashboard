@@ -1,4 +1,4 @@
-import instance from '../modules/http/axiosClient';
+import axiosInstance from '../modules/http/axiosClient';
 
 type Entry = {
   _id?: string;
@@ -9,6 +9,6 @@ type Entry = {
 };
 
 export const fetchEntries = (username: string) => () =>
-  instance.get(`/entry/user/${username}`).then(({ data }) => data);
+  axiosInstance.get(`/entry/user/${username}`).then(({ data }) => data);
 
 export default Entry;

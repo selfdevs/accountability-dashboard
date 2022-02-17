@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { User } from '../entities/User';
-import instance from '../modules/http/axiosClient';
+import axiosInstance from '../modules/http/axiosClient';
 import { getRefreshToken } from '../modules/storage/io';
 
 export const AuthContext = createContext<
@@ -29,7 +29,7 @@ const Auth: FC = ({ children }) => {
   const navigate = useNavigate();
 
   const logout = useCallback(() => {
-    instance.post('/auth/logout', { token: getRefreshToken() });
+    axiosInstance.post('/auth/logout', { token: getRefreshToken() });
     localStorage.clear();
     setUser(undefined);
     setStatus(Status.VISITOR);
@@ -46,7 +46,7 @@ const Auth: FC = ({ children }) => {
   window.onunhandledrejection = () => handleErrors();
 
   const refresh = useCallback(() => {
-    instance.get(`/user/me`).then(({ data }) => {
+    axiosInstance.get(`/user/me`).then(({ data }) => {
       setUser(data);
       setStatus(Status.LOGGED);
     });

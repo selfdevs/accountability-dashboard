@@ -8,7 +8,7 @@ import Button from '../components/Button/Button';
 import { User } from '../entities/User';
 import Avatar from '../components/Avatar/Avatar';
 import './homepage.css';
-import instance from '../modules/http/axiosClient';
+import axiosInstance from '../modules/http/axiosClient';
 
 const LOGIN_URL = `https://discord.com/api/oauth2/authorize?client_id=927637722628259842&redirect_uri=${encodeURIComponent(
   process.env.REACT_APP_REDIRECT_URI
@@ -23,7 +23,7 @@ const Homepage = () => {
   const refresh = useRefresh();
 
   useEffect(() => {
-    instance.get('/user').then(({ data }) => {
+    axiosInstance.get('/user').then(({ data }) => {
       setUsers(data.reverse());
     });
   }, []);
@@ -31,7 +31,7 @@ const Homepage = () => {
   useEffect(() => {
     const code = params.get('code');
     if (code) {
-      instance
+      axiosInstance
         .post('/auth/discord', { code })
         .then(({ data }) => {
           saveAccessToken(data.accessToken);

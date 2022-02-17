@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { SAVING_DELAY } from './constants';
 import { getStateText } from './utils';
-import instance from '../../modules/http/axiosClient';
+import axiosInstance from '../../modules/http/axiosClient';
 
 type ScratchPadHook = {
   loadingText: string;
@@ -26,7 +26,7 @@ export const useScratchPad = (text: string): ScratchPadHook => {
     setLoading(true);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      instance.patch('/user/me', { scratchpad: e.target.value });
+      axiosInstance.patch('/user/me', { scratchpad: e.target.value });
 
       setLoading(false);
     }, SAVING_DELAY);

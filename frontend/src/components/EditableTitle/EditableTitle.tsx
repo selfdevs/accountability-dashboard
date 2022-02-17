@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { faCheck, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './styles.css';
-import instance from '../../modules/http/axiosClient';
+import axiosInstance from '../../modules/http/axiosClient';
 
 const EditableTitle = ({ title, readonly }) => {
   const [editMode, setEditMode] = useState(false);
@@ -16,7 +16,7 @@ const EditableTitle = ({ title, readonly }) => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      instance.patch('/user/me', { dashboardTitle: newTitle });
+      axiosInstance.patch('/user/me', { dashboardTitle: newTitle });
       setEditMode(false);
     },
     [newTitle]

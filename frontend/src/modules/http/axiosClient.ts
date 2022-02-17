@@ -19,19 +19,19 @@ interface RequestConfig extends AxiosRequestConfig {
   };
 }
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 export const addAccessToken = (accessToken: string) => {
-  instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
 export const removeAccessToken = () => {
-  delete instance.defaults.headers.common.Authorization;
+  delete axiosInstance.defaults.headers.common.Authorization;
 };
 
-instance.interceptors.request.use((config: RequestConfig) => {
+axiosInstance.interceptors.request.use((config: RequestConfig) => {
   const token = getAccessToken();
   const newConfig = config;
   newConfig.headers.Authorization = `Bearer ${token}`;
@@ -39,7 +39,7 @@ instance.interceptors.request.use((config: RequestConfig) => {
   return newConfig;
 });
 
-instance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const originalRequest = error.config;
@@ -47,16 +47,16 @@ instance.interceptors.response.use(
     if (error?.response?.status === 401) {
       const refreshToken = getRefreshToken();
       if (refreshToken) {
-        return instance
-          .post(`/auth/token`, {
+        return axiosInstance
+          .post<TokenResponse>(`/auth/token`, {
             token: refreshToken,
           })
           .then(({ data }) => {
             removeAccessToken();
-            saveRefreshToken((data as TokenResponse).refreshToken);
-            saveAccessToken((data as TokenResponse).accessToken);
-            addAccessToken((data as TokenResponse).accessToken);
-            return instance(originalRequest);
+            saveRefreshToken(data.refreshToken);
+            saveAccessToken(data.accessToken);
+            addAccessToken(data.accessToken);
+            return axiosInstance(originalRequest);
           });
       }
       return Promise.reject(error);
@@ -65,4 +65,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+export default axiosInstance;

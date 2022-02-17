@@ -1,7 +1,7 @@
 import { useLayoutEffect, useReducer, useRef } from 'react';
 import { DateTime } from 'luxon';
 import { useQueryClient } from 'react-query';
-import instance from '../../modules/http/axiosClient';
+import axiosInstance from '../../modules/http/axiosClient';
 
 export const useScrollToCurrentDay = (enable: boolean) => {
   const tbodyRef = useRef(null);
@@ -68,7 +68,7 @@ export const useTableRow = (
         `You sure you wanna delete Entry for day ${state.day}? Think again.`
       )
     ) {
-      instance
+      axiosInstance
         .delete(`/entry/${entryId}`)
         .then(() => queryClient.invalidateQueries('entries'));
     }
@@ -76,7 +76,7 @@ export const useTableRow = (
 
   const handleSubmit = async () => {
     const pathName = entryId ? `/entry/${entryId}` : '/entry';
-    await instance({
+    await axiosInstance({
       url: pathName,
       method: entryId ? 'PATCH' : 'POST',
       data: {
