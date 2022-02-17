@@ -65,10 +65,9 @@ export const generateAndStoreDiscordCredentials = async (
   const discordUser = await getCurrentUser(discordData.access_token);
   const user = await User.findOne({ email: discordUser.email });
   if (user) {
-    const prevCredentials = await DiscordCredentials.findById(
-      user.discordCredentials
+    await DiscordCredentials.deleteOne({ _id: user.discordCredentials }).catch(
+      () => console.log('User not found.')
     );
-    await prevCredentials.delete();
   }
   const discordCredentialsEntity = new DiscordCredentials({
     accessToken: discordData.access_token,

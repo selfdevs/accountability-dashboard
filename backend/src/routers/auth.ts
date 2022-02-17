@@ -9,7 +9,7 @@ import { decode, JsonWebTokenError, JwtPayload, verify } from 'jsonwebtoken';
 
 const authRouter = new Router();
 
-export interface userPayload extends JwtPayload {
+export interface UserPayload extends JwtPayload {
   userId: string;
 }
 
@@ -28,8 +28,9 @@ authRouter.post('/discord', async (ctx, next) => {
       });
     }
 
-    let tokenDoc = await Token.findOne({ user: user._id });
-    if (tokenDoc) await tokenDoc.delete();
+    await Token.deleteOne({ user: user._id }).catch(() =>
+      console.log('Token not found.')
+    );
 
     user.discordCredentials = discordCredentialsEntity._id;
     user.discordId = id;
@@ -65,7 +66,7 @@ authRouter.post('/token', async (ctx, next) => {
 
     await refreshTokenDoc.delete();
 
-    const { userId } = decode(token) as userPayload;
+    const { userId } = decode(token) as UserPayload;
 
     const user = await User.findOne({ _id: userId });
 
