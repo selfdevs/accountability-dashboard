@@ -3,16 +3,17 @@ import React, {
   FC,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
+  useEffect,
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getFromStorage } from '../modules/storage/io';
 import { User } from '../entities/User';
+import axiosInstance from '../modules/http/axiosClient';
+import { getRefreshToken } from '../modules/storage/io';
 
 export const AuthContext = createContext<
-  { user: User; refresh: Function; logout: Function } | undefined
+  { user: User; logout: Function; refresh: Function } | undefined
 >(undefined);
 
 export enum Status {
@@ -28,37 +29,27 @@ const Auth: FC = ({ children }) => {
   const navigate = useNavigate();
 
   const logout = useCallback(() => {
+    axiosInstance.post('/auth/logout', { token: getRefreshToken() });
     localStorage.clear();
     setUser(undefined);
     setStatus(Status.VISITOR);
     navigate('/');
   }, []);
 
+  const handleErrors = () => {
+    localStorage.clear();
+    setUser(undefined);
+    setStatus(Status.VISITOR);
+    navigate('/');
+  };
+
+  window.onunhandledrejection = () => handleErrors();
+
   const refresh = useCallback(() => {
-    const token = getFromStorage('accessToken');
-    if (!token) {
-      setStatus(Status.VISITOR);
-      return;
-    }
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/user/me`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          throw Error('Visitor');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setUser(data);
-        setStatus(Status.LOGGED);
-      })
-      .catch(() => {
-        setStatus(Status.VISITOR);
-      });
+    axiosInstance.get(`/user/me`).then(({ data }) => {
+      setUser(data);
+      setStatus(Status.LOGGED);
+    });
   }, [pathname]);
 
   useEffect(() => {
@@ -66,8 +57,8 @@ const Auth: FC = ({ children }) => {
   }, [pathname]);
 
   const contextValue = useMemo(
-    () => ({ user, refresh, logout }),
-    [user, refresh, logout]
+    () => ({ user, logout, refresh }),
+    [user, logout, refresh]
   );
 
   if (status === Status.PENDING) return null;
@@ -75,11 +66,6 @@ const Auth: FC = ({ children }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};
-
-export const useRefresh = () => {
-  const { refresh } = useContext(AuthContext);
-  return refresh;
 };
 
 export const useLogout = () => {
@@ -90,6 +76,11 @@ export const useLogout = () => {
 export const useUser = (): User | undefined => {
   const { user } = useContext(AuthContext);
   return user;
+};
+
+export const useRefresh = () => {
+  const { refresh } = useContext(AuthContext);
+  return refresh;
 };
 
 export default Auth;

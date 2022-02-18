@@ -1,4 +1,5 @@
-import { request } from '../modules/http/client';
+// eslint-disable-next-line import/no-cycle
+import axiosInstance from '../modules/http/axiosClient';
 
 export type User = {
   _id: string;
@@ -14,4 +15,4 @@ export type User = {
 };
 
 export const fetchUser = (username: string) => () =>
-  request(`/user/${username}`);
+  axiosInstance.get(`/user/${username}`).then(({ data }) => data);

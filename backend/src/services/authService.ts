@@ -12,5 +12,14 @@ export const generateJWT = async (userId: string): Promise<string> => {
   );
 };
 
+export const generateRefreshJWT = async (userId: string): Promise<string> => {
+  return sign(
+    {
+      userId,
+    },
+    process.env.REFRESH_SECRET
+  );
+};
+
 export const getTokenFromAuthorizationHeader = (headerValue: string): string =>
   headerValue.replace('Bearer ', '');

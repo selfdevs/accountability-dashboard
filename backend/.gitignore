@@ -3,3 +3,4 @@ dist/
 coverage/
 .env.local
 newrelic_agent.log
+request.rest

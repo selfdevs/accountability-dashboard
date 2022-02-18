@@ -1,6 +1,11 @@
-export const saveToStorage = (key: string, data: string) => {
-  localStorage.setItem(key, data);
+export const getRefreshToken = () => localStorage.getItem('refreshToken');
+
+export const saveRefreshToken = (token: string) => {
+  localStorage.setItem('refreshToken', token);
 };
 
-export const getFromStorage = (key: string): string =>
-  localStorage.getItem(key);
+export const getAccessToken = () => localStorage.getItem('accessToken');
+
+export const saveAccessToken = (token: string) => {
+  localStorage.setItem('accessToken', token);
+};
