@@ -48,7 +48,8 @@ entryRouter.post('/', async (ctx, next) => {
       user: ctx.user._id,
       date: ctx.request.body.date,
     });
-    if (prevEntry) throw new Error('Already a record for this day');
+    if (prevEntry)
+      return errorResponse(ctx, 'Already an entry for this day', 409);
     await entry.save();
     ctx.body = entry;
     ctx.response.status = 200;

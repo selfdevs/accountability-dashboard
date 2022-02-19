@@ -61,6 +61,11 @@ axiosInstance.interceptors.response.use(
       }
       return Promise.reject(error);
     }
+
+    if (error?.reponse?.status === 409) {
+      throw new Error('Entry already exists!');
+    }
+
     return Promise.reject(error);
   }
 );
