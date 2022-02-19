@@ -3,7 +3,6 @@ import { DateTime } from 'luxon';
 import { useQueryClient } from 'react-query';
 import axiosInstance from '../../modules/http/axiosClient';
 import { useNotify } from '../../contexts/Notification';
-import { useRefresh } from '../../contexts/Auth';
 
 export const useScrollToCurrentDay = (enable: boolean) => {
   const tbodyRef = useRef(null);
@@ -51,7 +50,6 @@ export const useTableRow = (
   removeAddRow
 ) => {
   const notify = useNotify();
-  const refresh = useRefresh();
 
   const queryClient = useQueryClient();
   const [state, dispatch] = useReducer(tableReducer, {
@@ -97,7 +95,6 @@ export const useTableRow = (
       })
       .catch(() => {
         notify('Entry for that day already exists!');
-        refresh();
         return false;
       });
 
