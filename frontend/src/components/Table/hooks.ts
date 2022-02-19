@@ -2,6 +2,7 @@ import { useLayoutEffect, useReducer, useRef } from 'react';
 import { DateTime } from 'luxon';
 import { useQueryClient } from 'react-query';
 import axiosInstance from '../../modules/http/axiosClient';
+import { useNotify } from '../../contexts/Notification';
 
 export const useScrollToCurrentDay = (enable: boolean) => {
   const tbodyRef = useRef(null);
@@ -48,6 +49,8 @@ export const useTableRow = (
   initialComment,
   removeAddRow
 ) => {
+  const notify = useNotify();
+
   const queryClient = useQueryClient();
   const [state, dispatch] = useReducer(tableReducer, {
     editMode: typeof entryId === 'undefined',
@@ -76,7 +79,7 @@ export const useTableRow = (
 
   const handleSubmit = async () => {
     const pathName = entryId ? `/entry/${entryId}` : '/entry';
-    await axiosInstance({
+    const response = axiosInstance({
       url: pathName,
       method: entryId ? 'PATCH' : 'POST',
       data: {
@@ -85,10 +88,17 @@ export const useTableRow = (
         done: state.done,
         comment: state.comment,
       },
-    });
+    })
+      .then(async () => {
+        await queryClient.invalidateQueries('entries');
+        return true;
+      })
+      .catch(() => {
+        notify('Entry for that day already exists!');
+        return false;
+      });
 
-    await queryClient.invalidateQueries('entries');
-    return true;
+    return response;
   };
 
   return { state, dispatch, deleteEntry, handleSubmit };
