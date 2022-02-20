@@ -138,10 +138,16 @@ export const handleInteraction = async (interaction: any) => {
   const userId = get(interaction, 'member.user.id', null);
   const user = await User.findOne({ discordId: userId });
   if (!user) return { type: 4, data: { content: "We don't know you yet" } };
-  const today = await Entry.findOne({
+  let today = await Entry.findOne({
     user: user._id,
     date: DateTime.now().toISODate(),
   });
+  if (!today) {
+    today = new Entry({
+      user: user._id,
+      date: DateTime.now().toISODate(),
+    });
+  }
   if (fieldToUpdate === 'goal' && userInput) today.goal = userInput;
   if (fieldToUpdate === 'done' && userInput) today.done = userInput;
   if (fieldToUpdate === 'comment' && userInput) today.comment = userInput;
